@@ -1,0 +1,9 @@
+title: Management console
+icon: cogs
+description: Admin module and manages core entities of the hatch platform
+settings:
+  intro: Hatch admin settings
+  fields:
+    streamsEnabled:
+      type: checkbox
+      title: Streams enabled

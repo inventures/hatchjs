@@ -1,0 +1,61 @@
+<div class="page-title">
+    <h3>Special pages</h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <table class="table" id="pages-table">
+                    <thead>
+                        <tr>
+                            <th width="40%">
+                                <%- t('pages.headers.specialPages') %>
+                            </th>
+                            <th width="33%">
+                                <%- t('pages.headers.url') %>
+                            </th>
+                            <th width="10%">
+                                <%- t('pages.headers.privacy') %>
+                            </th>
+                            <th width="10%">
+                                <%- t('pages.headers.visibility') %>
+                            </th>
+                            <th width="7%">
+                                <%- t('pages.headers.actions') %>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (pages.length > 0) { %>
+                        <%- include _specialsTable %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5"><%- t('pages.help.noSpecialPages') %></td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //add delete confirmation
+        $("a[rel=delete-page]").die().live("click", function() {
+            var el = this;
+            if(confirm("<%- t('pages.help.areYouSureDelete') %>")) {
+                $.ajax(this.href, {
+                    success: function() {
+                        //reload the page
+                        window.location = window.location;
+                    }
+                });
+            }
+
+            return false;
+        });
+    } );
+</script>

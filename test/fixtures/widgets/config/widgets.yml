@@ -1,0 +1,10 @@
+test_widget:
+  title: 'Test widget'
+  description:
+  icon: 'icon-edit'
+  inlineEditAllowed: on
+  settings:
+    fields:
+      anchor:
+        type: 'checkbox'
+        title: 'Create anchor link'

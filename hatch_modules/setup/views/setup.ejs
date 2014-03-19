@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hatch.js application setup</title>
+
+    <link href="/stylesheets/theme-cerulean.css" rel="stylesheet">
+
+    <%- javascriptIncludeTag(javascripts()) %>
+    <%- csrfMetaTag() %>
+
+    <script type="text/javascript">
+        window.hatch = new Hatch();
+        window.hatch.init();
+    </script>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">Application setup</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+        <h1>Wecome to your new Hatch.js application</h1>
+
+        <p>
+            Please fill in the form to create the administrator account and your first site. You will then be redirected to your new site where start using Hatch!
+        </p>
+
+        <hr/>
+
+        <ul class="nav nav-tabs" id="tabs">
+            <li class="active"><a href="#new" data-toggle="tab">Create new application</a></li>
+            <li><a href="#restore" data-toggle="tab">Restore from a backup</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="new">
+                <%- formTagBegin({method: 'POST', remote:true}) %>
+
+                    <h3>Administrator details</h3>
+
+                    <div class="control-group">
+                        <label class="control-label" for="username">Admin username</label>
+                        <div class="controls">
+                            <input type="text" id="username" name="username" value="admin" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="email">Admin email</label>
+                        <div class="controls">
+                            <input type="text" id="email" name="email" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            <input type="password" id="password" name="password" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="confirm">Confirm password</label>
+                        <div class="controls">
+                            <input type="password" id="confirm" name="confirm" />
+                        </div>
+                    </div>
+
+                    <h3>Default site settings</h3>
+
+                    <div class="control-group">
+                        <label class="control-label" for="name">Site name</label>
+                        <div class="controls">
+                            <input type="text" id="name" name="name" value="Home" />
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="url">URL</label>
+                        <div class="controls">
+                            <input type="text" id="url" name="url" value="<%- req.headers.host %>" class="uneditable-input" readonly="readonly" />
+                            <span class="help-block"><a href="#" class="edit-url-link">Click here to edit the URL</a></span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Setup application</button>
+                        <button type="reset" class="btn">Reset</button>
+                    </div>
+
+                <%- formTagEnd() %>
+
+            </div>
+            <div class="tab-pane" id="restore">
+
+                <form class="form-horizontal" action="/" method="post" data-remote="true">
+                    <input type="hidden" name="dataFilename" id="dataFilename" />
+
+                    <h3>Restore database</h3>
+
+                    <div class="control-group">
+                        <label class="control-label" for="name">Restore data</label>
+                        <div class="controls">
+                            <a href="#" id="upload-link" class="btn">Upload data file</a>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="domain">Domain</label>
+                        <div class="controls">
+                            <input type="text" id="domain" name="domain" value="<%- req.headers.host %>" class="uneditable-input" readonly="readonly" />
+                            <span class="help-block"><a href="#" class="edit-url-link">Click here to edit the domain</a></span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Start restore</button>
+                        <button type="reset" class="btn">Reset</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.edit-url-link').bind('click', function() {
+                    $('#url, #domain').removeClass('uneditable-input').attr('readonly', null).focus();
+                    $(this).remove();
+                    return false;
+                });
+
+                // setup the file uploader
+                $('#upload-link').on('click', function () {
+                    window.hatch.upload.upload({}, function (err, data) {
+                        $('#dataFilename').val(data.url);
+                        $.noty({ text: 'Data uploaded successfully', type: 'success' });
+                    });
+
+                    return false;
+                });
+            });
+        </script>
+
+        <div style="display : none">
+            <%- JSON.stringify(req.headers) %>
+        </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+<%- widgetTitle() %>
+
+<div>
+    <ul class="list-unstyled">
+        <% pages.forEach(function (p) { %>
+            <% if(/true/.test(p.hideFromNavigation)) return; %>
+            <li class="<%- p.id == page.id ? 'active' : '' %> page-level-<%- p.level %>">
+                <%- linkTo(p.title, '//' + p.url) %>
+            </li>
+        <% }); %>
+    </ul>
+</div>

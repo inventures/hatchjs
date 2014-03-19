@@ -1,0 +1,47 @@
+<div class="edit-console" id="editConsole">
+    <div>
+        <div class="console-header">
+            <button class="close" aria-hidden="true">
+                &times;
+            </button>
+            <img src="/admin/images/egg.svg">
+            @model.t('editconsole.headers.editconsole')
+        </div>
+        <div class="accordion" id="edit-console-accordion">
+            <div class="panel">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#edit-console-accordion" href="#collapse-widgets" id="contentTab">
+                        @model.t('editconsole.headers.widgets')
+                    </a>
+                </div>
+                <div id="collapse-widgets" class="accordion-body collapse in">
+                    <div class="accordion-inner" id="edit-console-widgets">
+                        @html.include('page/_editconsolewidgets')
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#edit-console-accordion" href="#collapse-layout" id="columnsTab">
+                        @model.t('editconsole.headers.layout')
+                    </a>
+                </div>
+                <div id="collapse-layout" class="accordion-body collapse">
+                    <div class="accordion-inner" id="edit-console-layouts">
+                        @html.include('page/_editconsolelayouts')
+                    </div>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#edit-console-accordion" href="#collapse-design" id="designTab">
+                        @model.t('editconsole.headers.design')
+                    </a>
+                </div>
+                <div id="collapse-design" class="accordion-body collapse">
+                    @html.include('page/_editconsolestyle')
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

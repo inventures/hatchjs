@@ -1,0 +1,40 @@
+<% function item(p) { %>
+    <li class="<%- p.id == page.id ? 'active' : '' %> <%- p.level <= 1 && p.pages && p.pages.length > 0 ? 'dropdown dropdown-nav':'' %>">
+        <a href="<%- '//' + p.url %>" class="page-level-<%- p.level %>">
+            <%- p.title %>
+        </a>
+        <% if (p.pages && p.pages.length > 0) { %>
+            <% if (p.level <= 1) { %>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu pull-right">
+                    <% p.pages.forEach(item) %>
+                </ul>
+            <% } else { %>
+                <% p.pages.forEach(item) %>
+            <% } %>
+        <% } %>
+    </li>
+<% } %>
+
+<!-- primary navigation -->
+<nav class="navbar navbar-inverse">
+    <ul class="nav navbar-nav">
+        <!-- level 0 and 1 pages are displayed here -->
+        <% pages.forEach(item) %>
+    </ul>
+</nav>
+
+<!-- show breadcrumb if we have pages with level > 2 -->
+<% if (breadcrumb.length > 2) { %>
+    <ol class="breadcrumb">
+        <% breadcrumb.forEach(function (p, i) { %>
+            <% if(/true/.test(p.hideFromNavigation)) return; %>
+            <li<%- p.selected ? ' class="active"':''%>>
+                <%- linkTo(p.title, '//' + p.url) %>
+            </li>
+        <% }); %>
+    </ol>
+<% } %>
+

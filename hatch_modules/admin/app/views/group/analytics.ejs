@@ -1,0 +1,27 @@
+<div class="page-title">
+    <h3><%- t('group.headers.analytics') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- formTagBegin({ action: pathTo.groupSave, id: 'settingsForm', class: 'form-vertical form-slim', method: 'post', enctype: 'multipart/form-data', remote: true }) -%>
+
+                    <div class="form-group">
+                        <label class="form-label" for="googleAnalyticsId"><%- t('group.labels.googleAnalytics') %></label>
+                        <span class="help"><%- t('group.help.googleAnalytics') %></span>
+                        <div class="controls">
+                            <input type="text" class="form-control" id="googleAnalyticsId" name="googleAnalyticsId" value="<%- group.googleAnalyticsId %>">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%- t('group.actions.save') %></button>
+                    </div>
+
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

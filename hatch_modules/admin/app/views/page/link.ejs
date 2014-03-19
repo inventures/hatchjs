@@ -1,0 +1,142 @@
+<div class="modal-dialog" id="modal-link" style="">
+    <div class="modal-content">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3><%- __('Insert link') %></h3>
+        </div>
+        <div class="modal-body">
+
+            <div id="modal-image-tabs">
+                <ul class="nav nav-tabs" id="media-tabs">
+                    <li class="active"><a href="#select-page" data-toggle="tab"><%- __('Select page') %></a></li>
+                    <li><a href="#another-website" data-toggle="tab"><%- __('To another website') %></a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="select-page">
+
+                        <ul class="">
+                            <% req.group.pagesCache.forEach(function(page) { %>
+                                <% if([null, '', 'page', 'homepage'].indexOf(page.type) == -1) return; %>
+                                <li class="level<%- page.level %>">
+                                    <a href="//<%- page.url %>" class="link"><%- page.title %></a>
+                                </li>
+                            <% }) %>
+                        </ul>
+
+                    </div>
+                    <div class="tab-pane" id="another-website">
+
+                        <form id="url-form">
+
+                            <div class="control-group">
+                                <label class="control-label" for="content-url">
+                                    <%- __('Enter a URL') %>
+                                </label>
+                                <div class="controls">
+                                    <div class="input-append">
+                                        <input id="content-url" name="search" type="text" placeholder="http://..." /><button class="btn" type="submit" id="modal-link-addbyurl"><%- __('Insert link') %></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <form id="search-form">
+
+                            <div class="control-group">
+                                <label class="control-label" for="content-search">
+                                    <%- __('Or search for a link') %>
+                                </label>
+                                <div class="controls">
+                                    <div class="input-append">
+                                        <input id="content-search" name="search" type="text" placeholder="<%- __('Enter a keyword...') %>" /><button class="btn" type="submit" id="modal-link-search"><%- __('Search') %></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="search-results" style="display : none;">
+
+                                <hr/>
+
+                                <ul>
+
+                                </ul>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="btn-toolbar pull-left" style="margin : 0;">
+                <div class="btn-group">
+                    <button class="btn" type="button" id="modal-link-unlink"><i class="icon-remove"></i> <%- __('Remove link') %></button>
+                </div>
+            </div>
+            <div class="btn-toolbar" style="margin : 0;">
+                <div class="btn-group">
+                    <a class="btn" data-dismiss="modal"><%- __('Cancel') %></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //bind search images form
+    $('#search-form').bind("submit", function() {
+        $.ajax(pathTo('admin/page/linksearch'), {
+            type: 'POST',
+            data: {
+                query: $('#search-form input').val()
+            },
+            success: function(data) {
+                $('#search-results').show();
+                var ul = $('#search-results ul');
+                ul.empty();
+
+                data.forEach(function(link) {
+                    ul.append('<li><a href="' + link.link + '" class="link">' + link.title + '</li>');
+                });
+            }
+        });
+
+        return false;
+    });
+
+    //bind insert by url form
+    $('#url-form').on("submit", function() {
+        return createLink($('#content-url').val());
+    });
+
+    $("#modal-link a.link").on("click", function() {
+        return createLink(this.href);
+    });
+
+    $("#modal-link-unlink").on("click", function() {
+        window.redactor.data('redactor').restoreSelection();
+        window.redactor.execCommand('unlink');
+
+        //hide this modal
+        $('#redactor-modal').modal('hide');
+
+        return false;
+    });
+
+    function createLink(url) {
+        window.redactor.data('redactor').restoreSelection();
+        window.redactor.execCommand('createlink', url);
+
+        //hide this modal
+        $('#redactor-modal').modal('hide');
+
+        return false;
+    }
+
+</script>

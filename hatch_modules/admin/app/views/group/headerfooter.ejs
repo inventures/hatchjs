@@ -1,0 +1,61 @@
+<div class="page-title">
+    <h3><%- t('group.headers.headerfooter') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- formTagBegin({ action: pathTo.groupSave, id: 'settingsForm', class: 'form-vertical form-slim', method: 'post', enctype: 'multipart/form-data', remote: true }) -%>
+                    <div class="form-group">
+                        <label class="form-label" for="navBarType">
+                            <%- t('group.labels.navbarType') %>
+                        </label>
+                        <div class="controls">
+                            <select id="navBarType" name="navBarType" class="form-control">
+                                <option value="default"><%- t('group.labels.navbarDefault') %></option>
+                                <option value="fixed" <%- group.navBarType === 'fixed' ? 'selected="selected"':'' %>><%- t('group.labels.navbarFixed') %></option>
+                                <option value="mouseover" <%- group.navBarType === 'mouseover' ? 'selected="selected"':'' %>><%- t('group.labels.navbarMouseover') %></option>
+                                <option value="click" <%- group.navBarType === 'click' ? 'selected="selected"':'' %>><%- t('group.labels.navbarMouseclick') %></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="navBarStyle">
+                            <%- t('group.labels.navbarStyle') %>
+                        </label>
+                        <div class="controls">
+                            <select id="navBarStyle" name="navBarStyle" class="form-control">
+                                <option value="default"><%- t('group.labels.navbarDefault') %></option>
+                                <option value="inverse" <%- group.navBarStyle === 'inverse' ? 'selected="selected"':'' %>><%- t('group.labels.navbarInverse') %></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="headerHtml">
+                            <%- t('group.labels.headerHtml') %>
+                        </label>
+                        <div class="controls">
+                            <textarea class="input-xlarge span6 richtext" id="headerHtml" name="headerHtml" rows="10"><%- group.headerHtml %></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="footerHtml">
+                            <%- t('group.labels.footerHtml') %>
+                        </label>
+                        <div class="controls">
+                            <textarea class="input-xlarge span6 richtext" id="footerHtml" name="footerHtml" rows="10"><%- group.footerHtml %></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%- t('group.actions.save') %></button>
+                    </div>
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

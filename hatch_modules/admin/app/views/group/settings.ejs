@@ -1,0 +1,94 @@
+<div class="page-title">
+    <h3><%- t('group.headers.settings') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- formTagBegin({ action: pathTo.groupSave, id: 'settingsForm', class: 'form-vertical form-slim', method: 'post', enctype: 'multipart/form-data', remote: true }) -%>
+                    <div class="form-group">
+                        <label class="form-label" for="name"><%- t('group.labels.title') %></label>
+                        <div class="controls">
+                            <input type="text" class="form-control" id="name" name="name" value="<%- group.name %>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="joinPermissions">
+                            <%- t('group.labels.joinPermissions') %>
+                        </label>
+                        <div class="controls">
+                            <select id="joinPermissions" name="joinPermissions" class="form-control">
+                                <option value="free" <%- group.joinPermissions == "free" ? 'selected="selected"':'' %>><%- t('group.labels.freeToJoin') %></option>
+                                <option value="request" <%- group.joinPermissions == "request" ? 'selected="selected"':'' %>><%- t('group.labels.requestToJoin') %></option>
+                                <option value="closed" <%- group.joinPermissions == "closed" ? 'selected="selected"':'' %>><%- t('group.labels.inviteOnly') %></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="hidden" id="favicon" name="favicon" value="<%- group.favicon %>" />
+                        <label class="form-label" for="favicon"><%- t('group.labels.favicon') %></label>
+                        <div class="controls">
+                            <a class="btn btn-info" href="#" id="faviconButton"><i class="icon-picture"></i> <%- t('group.actions.uploadFavicon') %></a>
+
+                            <% if(group.favicon) { %>
+                                <img src="<%- group.favicon %>" id="faviconPreview" width="16" height="16" />
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="metaDescription">
+                            <%- t(['group.labels.metaDescription', '&lt;metatags&gt;']) %>
+                        </label>
+                        <div class="controls">
+                            <textarea class="form-control" id="metaDescription" name="metaDescription"><%- group.metaDescription %></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="metaKeywords">
+                            <%- t(['group.labels.metaKeywords', '&lt;metatags&gt;']) %>
+                        </label>
+                        <div class="controls">
+                            <input type="text" class="form-control" id="metaKeywords" name="metaKeywords" value="<%- group.metaKeywords %>">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%- t('group.actions.save') %></button>
+                    </div>
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        //bind the form ajax
+        $('#settingsForm').bind('ajax:success', function(e, data) {
+            //refresh the page
+            setTimeout(function() { window.location = window.location; }, 1000);
+        });
+
+        //setup the file uploader
+        var uploader = new qq.FileUploader({
+            params: { _csrf: $('meta[name=csrf-token]').attr('content') },
+            element: $('#faviconButton').get(0),
+            action: '<%- pathFor('upload').add -%>',
+            uploadButtonText: $('#faviconButton').html(),
+            encoding: 'multipart',
+            onComplete: function(id, filename, data) {
+                $('#favicon').val(data.url);
+                $('#faviconPreview').attr('src', data.url);
+
+                $.noty({ text: '<i class="icon-ok"></i> <%- t('group.help.faviconUploaded') %>', type: 'success' });
+            }
+        });
+    });
+</script>
+

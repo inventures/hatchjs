@@ -1,0 +1,55 @@
+<%- formTagBegin({action: pathFor('user').register(), remote: true, method: 'POST', class: 'form-vertical' }) %>
+    <input type="hidden" name="hasPassword" value="true" />
+
+    <div class="modal fade" id="register">
+        <div class="modal-dialog">]
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"><%- __('Register a new account') %></h3>
+                </div>
+                <div class="modal-body">
+                    <br />
+                    <div class="form-group">
+                        <label class="control-label" for="email"><%- __('Email address') %></label>
+                        <input type="email" class="form-control" id="email" name="email" autofocus="autofocus"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="username"><%- __('Username') %></label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="password"><%- __('Password') %></label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox">
+                            <input type="checkbox" id="optionsCheckbox" name="terms" value="accepted">
+                            <%- __('I agree to the') %> <%- linkTo(__('Terms and conditions'), specialPagePath('terms'), { target: '_new' }) %>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p style="float : left; margin : 8px 0 0 1px;">
+                        <%- __('Already have an account') %>? <a href="#login" data-toggle="modal" data-dismiss="modal"><%- __('Sign in') %></a>
+                    </p>
+
+                    <div class="btn-toolbar" style="margin : 0; float: right;">
+                        <div class="btn-group">
+                          <button class="btn btn-primary" type="submit"><%- __('Register') %></button>
+                          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu" style="text-align: left;">
+                            <%- contentFor('login') %>
+                          </ul>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn" data-dismiss="modal"><%- __('Cancel') %></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- formTagEnd() %>

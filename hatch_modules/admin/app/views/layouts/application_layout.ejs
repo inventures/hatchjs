@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%- t(['admin.title', group.name]) %></title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- csrfMetaTag() %>
+
+    <!-- standard bootstrap css -->
+    <link href="/admin/webarch/assets/plugins/boostrapv3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/webarch/assets/plugins/boostrapv3/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/admin/webarch/assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- js plugins css -->
+    <link href="/admin/webarch/assets/plugins/chosen-bootstrap/chosen/chosen.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="/admin/css/noty.css" />
+    <link rel="stylesheet" href="/javascripts/redactor/redactor.css" />
+    <link href="/admin/webarch/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/webarch/assets/plugins/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+
+    <!-- theme specific css -->
+    <link type="text/css" rel="stylesheet" href="/admin/webarch/assets/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/webarch/assets/css/responsive.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/webarch/assets/css/custom-icon-set.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/webarch/assets/css/animate.min.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/webarch/assets/plugins/font-awesome/css/font-awesome.css" />
+    <link type="text/css" rel="stylesheet" href="/admin/css/admin.css" />
+    
+    <meta name="groupId" content="<%- group && group.id %>" />
+
+    <link rel="icon" type="image/png" href="<%- group.favicon || '/egg.png' %>">
+
+    <%- javascriptIncludeTag('jquery', 'redactor/redactor', 'bootstrap', 'jquery-valadd', 'jquery-hoverintent', 'jquery-textarea-autogrow', 'jquery-noty', 'jquery-cookie', 'jquery-pjax', 'hatch-ajax', 'hatch-upload', 'hatch-page', 'hatch-widget', 'hatch', 'bootstrap-datetimepicker', 'i18n', 'jquery-ui.min', 'chosen.jquery', 'jquery-datatables', 'hatch-editconsole', 'hatch-dragdrop', 'hatch-css-properties', 'hatch-styleeditor', 'hatch-inline-edit', 'hatch-management', 'ace/ace', 'ace/mode-javascript') %>
+
+    <script type="text/javascript">
+        window.hatch = new Hatch();
+        $(document).ready(function () {
+            window.hatch.init();
+        });
+    </script>
+
+    <script src="/admin/webarch/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="/admin/webarch/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="pjax-body">
+        <div id="main">
+            <div class="header navbar navbar-inverse">
+                <div class="navbar-inner">
+                    <div class="header-seperation">
+                        <a class="brand" href="//<%- request.page.url %>">
+                            <img src="/admin/images/egg.svg">
+                            <strong>Hatch</strong><small>.js</small>
+                        </a>
+
+                        <ul class="nav pull-right notifcation-center">  
+                            <li class="dropdown"> 
+                                <a href="//<%- request.page.url %>" class="dropdown-toggle active" rel="nopjax">
+                                    <div class="iconset top-home"></div>
+                                </a> 
+                            </li>
+                            <!--
+                            <li class="dropdown"> 
+                                <a href="#dashboard" class="dropdown-toggle" rel="nopjax"> 
+                                    <div class="iconset top-messages"></div>
+                                </a>      
+                            </li>
+                            -->  
+                        </ul>
+                    </div>
+                    <div class="header-quick-nav">
+                        <!--
+                        <div class="pull-left"> 
+                            <ul class="nav quick-section">
+                                <li>
+                                    <div class="input-prepend inside search-form no-boarder">
+                                        <span class="add-on"> <a href="#" class=""><div class="iconset top-search"></div></a></span>
+                                        <input name="" type="text" class="no-boarder " placeholder="Search Dashboard" style="width:250px;">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        -->
+                        <div class="pull-right">
+                            <div class="chat-toggler">
+                                <a href="<%- specialPagePath('profile', { username: request.user.username }) %>">
+                                    <div class="user-details">
+                                        <div class="username">
+                                            <strong><%- request.user.displayName %></strong>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="profile-pic">
+                                    <img src="<%- request.user.avatar %>" width="35" height="35">
+                                </div>
+                            </div>
+                            <ul class="nav quick-section ">
+                                <li class="quicklinks"> 
+                                    <a class="pull-right" href="<%- specialPagePath('account') %>" rel="nopjax">
+                                        <i class="icon-cog"></i>
+                                    </a>
+                                </li> 
+                                <li class="quicklinks"> <span class="h-seperate"></span></li> 
+                                <li class="quicklinks">     
+                                    <a href="<%- pathFor('user').logout %>" rel="nopjax">
+                                        <i class="icon-off"></i>
+                                    </a> 
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-container row">
+                <div class="page-sidebar">
+                    <div class="user-info-wrapper"> 
+                        <div class="user-info">
+                            <div class="username"><%- group.name %></div>
+                            <div class="status">Group access: <a href="#"><div class="status-icon green"></div>Public</a></div>
+                        </div>
+                    </div>
+
+                    <!-- main navigation -->
+                    <% tabs = _.sortBy(tabs, 'rank'); %>
+                    <ul>
+                        <% tabs.forEach(function(tab) {
+                           var tabUrl = pathFor(tab.module || 'admin')[tab.url]();
+                           if (!tab.module || moduleEnabled(tab.module)) { %>
+                            <li<%- tab.name === sectionName ? ' class="active"' : '' %>>
+                                <a href="<%- tabUrl %>" class="pjax">
+                                    <%- icon(tab.icon || 'circle') + ' ' + t('tabs.' + tab.name) %>
+                                    <span class="arrow <%- tab.name === sectionName ? 'open':'' %>"></span>
+                                </a>
+                                <% if (tab.name === sectionName) { %>
+                                    <% if (typeof subTabs !== 'undefined') { %>
+                                        <ul class="sub-menu">
+                                            <% subTabs.forEach(function (tab) { %>
+                                                <% if (tab.type === 'separator') { %>
+                                                    <li class="separator"></li>
+                                                <% return; } %>
+                                                <% if (tab.header) { %>
+                                                    <li class="sub-header">
+                                                        <small><%- t(tab.header) || tab.header %></small>
+                                                    </li>
+                                                <% return; } %>
+
+                                                <% tabUrl = pathFor(tab.module || 'admin')[tab.url] || tab.url %>
+                                                <li <%- tab.active ? 'class="active"':'' %>>
+                                                    <a href="<%- tabUrl %>">
+                                                        <%- t(tab.name) || tab.name %>
+                                                        <% if (tab.count) { %>
+                                                            <span class="badge badge-disable pull-right"><%- tab.count %></span>
+                                                        <% } %>
+                                                    </a>
+                                                </li>
+                                            <% }) %>
+                                        </ul>
+                                    <% } %>
+                                <% } %>
+                            </li>
+                        <% }}) %>
+                    </ul>
+                </div>
+                <div class="page-content">
+                    <div class="content">
+                        <%- body %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PJAX-BODY -->
+    </div>
+
+    <!-- show each of the flash messages -->
+    <script type="text/javascript">
+        <% var flash = request.flash('info'); if (flash) flash.forEach(function(m, i) { %>
+            setTimeout(function() {
+                $.noty({
+                    type: 'success',
+                    text: '<i class="icon-info-sign"></i> <%= m %>'
+                });
+            }, 100 * <%= i %>);
+        <% }) %>
+    </script>
+
+    <% if(group.googleAnalyticsId) { %>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '<%- group.googleAnalyticsId %>']);
+            _gaq.push(['_setDomainName', '<%- req.headers.host %>']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    <% } %>
+</body>
+</html>

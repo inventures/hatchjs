@@ -1,0 +1,12 @@
+development:
+  mail: off
+  jabber: off
+  sentry: off
+production:
+  mail: off
+  jabber: off
+  sentry:
+    url: 'https://9cc016bc9c554aeb82dcce02ba25aac2:c730881fd478425992a651fd7921b7bc@app.getsentry.com/10410'
+test:
+  mail: off
+  jabber: off

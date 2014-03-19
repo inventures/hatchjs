@@ -1,0 +1,12 @@
+en:
+  content:
+    empty: 'Content not set. Double-click to edit.'
+  carousel:
+    helpMessage: Please edit the settings of this widget to add some images.
+  new-group:
+    name: Group name
+    url: URL
+    commit: Create group
+  newsticker:
+    helpMessage: Please edit the settings of this widget to add some news stories.
+

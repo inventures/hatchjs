@@ -1,0 +1,13 @@
+<p>
+    @model.t('editconsole.help.widgets')
+</p>
+
+<ul class="list-unstyled new-widgets-list">
+    @model.request.widgets.forEach(function (w) {
+        <li>
+            <span class="widget">
+                <a href="#@(w.module + '/' + w.name)">@w.info.title</a>
+            </span>
+        </li>
+    })
+</ul>

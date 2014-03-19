@@ -1,0 +1,166 @@
+.ui-resizable { position: relative;}
+.ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 5; display: block; }
+.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+.ui-resizable-e {
+    cursor: e-resize;
+    cursor: col-resize;
+    width: 12px;
+    top: 0;
+    height : 80px;
+    border-right : solid 3px rgba(0, 0, 0, 0.1);
+    right: -11px;
+    z-index: 0 ! important;
+}
+
+.ui-resizable-resizing > .ui-resizable-e, .ui-resizable-e:hover {
+    background: rgba(0, 0, 0, 0.1);
+    right: -16px;
+    border-right: none;
+}
+
+.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
+
+div.dataTables_length label {
+    width: 320px;
+    float: left;
+    text-align: left;
+}
+
+.dataTables_processing {
+    display : none;
+}
+
+div.dataTables_length select {
+    width: 75px;
+    display : inline;
+    margin: 6px 4px 9px 0;
+}
+
+div.dataTables_filter label {
+    float: right;
+    width: 350px;
+    text-align : right;
+
+    input
+    {
+        display : inline;
+        margin-left : 3px;
+    }
+}
+
+
+div.dataTables_info {
+    padding-top: 8px;
+}
+
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+}
+
+table {
+    margin: 1em 0;
+    clear: both;
+}
+
+table.dataTable th:active {
+    outline: none;
+}
+
+table {
+// Tablesorting styles w/ jQuery plugin
+    .header {
+        cursor: pointer;
+        &:after {
+            content: "";
+            float: right;
+            margin-top: 7px;
+            border-width: 0 4px 4px;
+            border-style: solid;
+            border-color: #000 transparent;
+            visibility: hidden;
+        }
+    }
+// Style the sorted column headers (THs)
+    .headerSortUp,
+    .headerSortDown {
+        text-shadow: 0 1px 1px rgba(255,255,255,.75);
+    }
+// Style the ascending (reverse alphabetical) column header
+    .header:hover {
+        &:after {
+            visibility:visible;
+            .opacity(30);
+        }
+    }
+// Style the descending (alphabetical) column header
+    .headerSortUp,
+    .headerSortUp:hover,
+    .headerSortDown,
+    .headerSortDown:hover {
+        &:after {
+            visibility:visible;
+            .opacity(100);
+        }
+    }
+// Style the ascending (reverse alphabetical) column header
+    .headerSortUp {
+        &:after {
+            border-bottom: none;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #000;
+            visibility:visible;
+            .box-shadow(none); //can't add boxshadow to downward facing arrow :(
+            .opacity(100);
+        }
+    }
+}
+
+.hovercard
+{
+    background: @tableBackgroundHover;
+    padding: 6px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius : 3px;
+    z-index : 20;
+    margin-left : -10px;
+
+    table
+    {
+        background-color: @bodyBackground;
+    }
+
+    .arrow
+    {
+        position: absolute;
+        bottom: -5px;
+        left: 15px;
+        background: @tableBackgroundHover;
+        width: 10px;
+        height: 10px;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        z-index: 1;
+    }
+
+    .content
+    {
+        background: @bodyBackground;
+        padding: 5px;
+    }
+}
+
+.hovercard.right .arrow
+{
+    right : 15px;
+    left : auto;
+}

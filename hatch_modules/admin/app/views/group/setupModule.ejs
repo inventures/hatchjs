@@ -1,0 +1,38 @@
+<div class="page-title">
+    <h3><%- t(['modules.headers.configure', inst.module.info.title || inst.module.info.name]) %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <% if(inst.module.info.settings.intro) { %>
+                    <p>
+                        <%- inst.module.info.settings.intro %>
+                    </p>
+                <% } %>
+
+                <%- formTagBegin({
+                    action: pathTo.updateModule(inst.module.name),
+                    method: 'PUT',
+                    remote: true,
+                    id: 'settingsForm',
+                    class: 'form-vertical form-slim'
+                }) %>
+                    <hr>
+                    
+                    <% Object.keys(inst.module.info.settings.fields).forEach(function(settingName) { 
+                        var setting = inst.module.info.settings.fields[settingName]; 
+                        setting.name = settingName;
+                    %>
+                        <%- formInput(setting, inst.contract && inst.contract[settingName] || '', { class: 'form-control'}) %>
+                    <% }) %>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%- t('modules.actions.save') %></button>
+                    </div>
+                <% formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

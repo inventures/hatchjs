@@ -1,0 +1,85 @@
+permalink-content:
+  title: Permalink content 
+  desctiption: Shows a content post on the page
+  icon: icon-picture
+  special: permalink
+statusupdate-form:
+  title: Status update form
+  description: A form to allow users to post status updates
+  icon: icon-align-left
+  settings:
+    fields:
+      prompt:
+        type: input
+        title: Input help text
+        default: What's up?
+      tags:
+        type: tags
+        title: Tag posts with
+content-list:
+  title: Content list
+  icon: icon-align-left
+  settings:
+    fields:
+      pageSize:
+        type: select
+        title: Number of posts
+        options:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          - 13
+          - 14
+          - 15
+          - 20
+          - 30
+          - 50
+          - 100
+        default: 10
+      startAt:
+        type: select
+        title: Start offset
+        options:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          - 12
+          - 13
+          - 14
+          - 15
+          - 20
+          - 30
+          - 50
+        default: 0
+      paging:
+        type: select
+        title: Paging
+        options:
+          - 'none:None'
+          - 'button:Show more button'
+          - 'scroll:Auto-load on scroll'
+        default: numbers
+      contentType:
+        type: contentType
+        title: Content type
+      tags:
+        type: tags
+        title: Tags

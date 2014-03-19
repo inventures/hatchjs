@@ -1,0 +1,223 @@
+<!--
+<div id="redactor_tabs">
+	<a href="javascript:void(null);" class="redactor_tabs_act">%RLANG.upload%</a>	
+	<a href="javascript:void(null);">%RLANG.choose%</a>		
+	<a href="javascript:void(null);">%RLANG.link%</a>		
+</div>
+
+
+<form id="redactorInsertImageForm" method="post" action="" enctype="multipart/form-data">	
+	<div id="redactor_tab1" class="redactor_tab">
+		<input type="file" id="redactor_file" name="file" />
+	</div>	
+	<div id="redactor_tab2" class="redactor_tab" style="display: none;">
+		<div id="redactor_image_box"></div>
+	</div>	
+</form>	
+
+	
+<div id="redactor_tab3" class="redactor_tab" style="display: none;">
+	<table class="redactor_ruler" width="100%">
+		<tr>
+			<td nowrap>%RLANG.image_web_link%</td>
+			<td width="100%"><input name="redactor_file_link" id="redactor_file_link"  style="width: 99%"  /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+
+				<span class="redactor_btns_box">
+					<input type="button" name="upload" id="redactor_upload_btn" value="%RLANG.insert%" />&nbsp;&nbsp;
+					<a href="javascript:void(null);" style="color: #777; font-size: 12px;" id="redactor_btn_modal_close">%RLANG.cancel%</a>
+				</span>
+				<div style="clear: both;"></div>					
+				
+			</td>
+		</tr>
+	
+	</table>
+</div>
+-->
+
+<div class="" id="modal-image" style="">
+    <div class="modal-body">
+        
+        <div id="modal-image-tabs">
+            <ul class="nav nav-tabs" id="media-tabs">
+              <li class="active"><a href="#upload-media" data-toggle="tab">From computer</a></li>
+              <li><a href="#from-internet" data-toggle="tab">From the internet</a></li>
+              <li><a href="#media-library" data-toggle="tab">From media library</a></li>
+            </ul>
+             
+            <div class="tab-content">
+              <div class="tab-pane active" id="upload-media">
+                
+                <div class="upload-area">
+                    <div class="instructions">
+                        Drop image file here
+                        <br/>
+                        or
+                        <br/>
+                        <button class="btn" id="modal-upload-button" type="button"><i class="icon-picture"></i> Select file to upload</button>
+                    </div>
+                </div>
+                
+              </div>
+              <div class="tab-pane" id="from-internet">
+
+                  <form id="internet-form">
+
+                    <div class="control-group">
+                        <label class="control-label" for="content-search">
+                            Enter a URL
+                        </label>
+                        <div class="controls">
+                            <div class="input-append">
+                                <input id="content-url" name="search" type="text" placeholder="http://..." /><button class="btn" type="submit" id="modal-image-addbyurl">Add media</button>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="control-group">
+                        <label class="control-label" for="content-search">
+                            Or search for images on the internet
+                        </label>
+                        <div class="controls">
+                            <div class="input-append">
+                                <input id="content-search" name="search" type="text" placeholder="Enter a keyword..." /><button class="btn" type="submit" id="modal-image-search">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                  </form>
+                
+              </div>
+              <div class="tab-pane" id="media-library">
+              
+                <p>
+                    Click on a previously uploaded image to insert
+                </p>
+                
+                <hr/>
+                
+                <ul class="thumbnails">
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                    <li class="span1">
+                      <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/160x120" alt="">
+                      </a>
+                    </li>
+                </ul>
+                
+              </div>
+            </div>
+        </div>
+        
+        <div class="hidden" id="modal-image-details">
+            <form>
+                <input type="hidden" name="url" id="modal-image-url" />
+                <input type="hidden" name="width" id="modal-image-width" />
+                <input type="hidden" name="height" id="modal-image-height" />
+
+                <div class="row">
+                    <div class="span2">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x240" id="modal-image-preview" />
+                        </div>
+                    </div>
+                    <div class="offset2">
+                        <div class="control-group">
+                            <label class="control-label" for="modal-image-alt">
+                                Title
+                            </label>
+                            <div class="controls">
+                                <input name="alt" id="modal-image-alt" type="text" placeholder="Enter a description..." />
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="modal-image-align">
+                                Alignment
+                            </label>
+                            <div class="controls">
+                                <select id="modal-image-align">
+                                    <option value="">Default</option>
+                                    <option value="pull-left">Left</option>
+                                    <option value="pull-right">Right</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    <div class="modal-footer">
+        <div class="btn-toolbar pull-left" style="margin : 0;">
+            <div class="btn-group">
+                <button class="btn hidden" type="button" id="modal-image-undo"><i class="icon-pencil"></i> Select a different image</button>
+            </div>
+        </div>
+        <div class="btn-toolbar" style="margin : 0;">
+            <div class="btn-group">
+                <button class="btn btn-primary" type="button" id="redactor_upload_btn">Insert image</button>
+            </div>
+            <div class="btn-group">
+                <a class="btn" data-dismiss="modal" id="redactor_btn_modal_close">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('#internet-form').bind('submit', function() {
+
+    });
+
+
+    function showImageDetails(url) {
+        $('#modal-image-tabs').hide();
+        $('#modal-image-details').show();
+
+        $('#modal-image-preview').attr('src', url);
+        $('#modal-image-url').val(url);
+    }
+</script>
+
+

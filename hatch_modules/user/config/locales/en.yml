@@ -1,0 +1,4 @@
+en:
+  user:
+    resetpassword: 'A reset password link has been sent to your registered email address.'
+    resetsuccess: 'Your password has been successfully reset. You may now login.'

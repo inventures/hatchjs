@@ -1,0 +1,52 @@
+static:
+  title: Richtext
+  description:
+  icon: 'icon-edit'
+  inlineEditAllowed: on
+
+html:
+  title: HTML
+  description:
+  icon: icon-edit
+
+group-header:
+  title: Group header
+  description:
+  icon: icon-globe
+
+mainmenu:
+  title: Navigation
+  description: default menu
+  icon: icon-sitemap
+  settings:
+    fields:
+      align:
+        type: select
+        title: Alignement
+        options:
+          - 'left:Left'
+          - 'right:Right'
+        default: 'left'
+      fixedTop:
+        type: select
+        title: 'Fix to top'
+        options:
+          - 'no:No'
+          - 'yes:Yes'
+        default: 'no'
+
+navigation:
+  title: Sub navigation
+  description:
+  icon: icon-list
+  settings:
+    fields:
+      display:
+        type: select
+        title: 'Display'
+        options:
+          - 'all:Entire sitemap'
+          - 'current:This level'
+          - 'current+below:This level and below'
+          - 'below:Below this level'
+        default: 'all'

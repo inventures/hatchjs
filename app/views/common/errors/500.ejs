@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Oh no! Something went wrong!</title>
+
+        <style>
+            body
+            {
+                background-color: #fff;
+                background: -webkit-gradient(radial, 50% 50%, 200, 50% 50%, 600, from(#fff), to(#ffd));
+            }
+
+            .container
+            {
+                text-align: center;
+                margin-top : 20px;
+            }
+
+            a
+            {
+                color : #a58868;
+            }
+
+            h1
+            {
+                color : #dfd0b1;
+                font: 155px impact;
+                margin: 15px 0 0;
+                text-shadow: 1px 1px 0px #fff, 0 0 0 #000, -1px -1px 0 #cfc0a1;
+            }
+
+            h1 small
+            {
+                font-size : 30px;
+            }
+
+            h2
+            {
+                color : #cfc0a1;
+                font: 16px Helvetica, Arial;
+                margin: 5px 0 40px;
+            }
+
+            pre
+            {
+                text-align: left;
+                margin : 20px 8% 100px;
+                padding : 20px;
+                background: #fff;
+                border: solid 1px #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1 title="Oops!">Oops!<small>500</small></h1>
+            <h2>There was an error processing your request.</h2>
+
+            <img src="/img/broken-egg3.jpg" />
+
+            <h2>
+                <a href="/">Click here to go back to the homepage of the site</a>
+            </h2>
+
+            <% if (err) { %>
+                <pre><%- err.stack %></pre>
+            <% } %>
+        </div>
+    </body>
+</html>

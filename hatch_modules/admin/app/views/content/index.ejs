@@ -1,0 +1,107 @@
+<div class="page-title">
+    <h3><%- t('content.header.manageContent') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs pull-right filter-tabs">
+            <% filterTabs.forEach(function (tab) { %>
+                <% tabUrl = pathFor(tab.module || 'admin')[tab.url] || tab.url %>
+                <li <%- tab.active ? 'class="active"':'' %>>
+                    <a href="<%- tabUrl %>">
+                        <%- t(tab.name) || tab.name %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+        <div class="grid simple">
+            <div class="grid-body">
+                <% var caret = ' <span class="caret"></span>'; %>
+
+                <div class="pull-left">
+                    <div class="btn-group">
+                        <%- buttonTag(t('content.actions.common') + caret, {
+                            class: 'btn btn-primary dropdown-toggle',
+                            'data-toggle': 'dropdown'}) %>
+                        <ul class="dropdown-menu">
+                            <li><%- linkTo(t('content.actions.delete'),
+                                pathTo.destroySelectedContent,
+                                {rel: 'multiAjaxLink', method: 'DELETE'}) %></li>
+                        </ul>
+                    </div>
+                    &nbsp;
+                    <% if (tags.length > 0) { %>
+                        <div class="btn-group">
+                            <%- buttonTag(t('content.actions.addTag') + caret, {
+                                class: 'btn dropdown-toggle',
+                                'data-toggle': 'dropdown'}) %>
+                            <ul class="dropdown-menu">
+                                <% tags.forEach(function(tag) { %>
+                                    <% if(!tag) return; %>
+                                    <li><%- linkTo(tag.title,
+                                        pathTo.addToTag('content', tag.id),
+                                        {rel: 'multiAjaxLink'}) %></li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                        &nbsp;
+                        <div class="btn-group">
+                            <%- buttonTag(t('content.actions.removeTag') + caret, {
+                                class: 'btn dropdown-toggle',
+                                'data-toggle': 'dropdown'}) %>
+                            <ul class="dropdown-menu">
+                                <% tags.forEach(function(tag) { %>
+                                    <% if (!tag) return; %>
+                                    <li><%- linkTo(tag.title,
+                                        pathTo.removeFromTag('content', tag.id), 
+                                        {rel: 'multiAjaxLink'}) %></li>
+                                <% }) %>
+                            </ul>
+                        </div>
+                    <% } %>
+                </div>
+
+                <table class="table" id="content-table">
+                    <thead>
+                        <tr>
+                            <th width="3%">
+                                <div class="checkbox check-default">
+                                    <input type="checkbox" value="all" id="selectAllContent" rel="tooltip" title="Select all content" />    
+                                    <label for="selectAllContent"></label>
+                                </div>
+                            </th>
+                            <th>
+                                <%= t('content.tableHead.title') %>
+                            </th>
+                            <th width="300">
+                                <%= t('content.tableHead.tags') %>
+                            </th>
+                            <th width="150">
+                                <%= t('content.tableHead.createdAt') %>
+                            </th>
+                            <th width="90">
+                                <%= t('content.tableHead.popularity') %>
+                            </th>
+                            <th width="60" align="right">
+                                <%= t('content.tableHead.actions') %>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    <% include js/contenttable.js %>
+</script>

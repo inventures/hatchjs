@@ -1,0 +1,31 @@
+Content.seed ->
+    id: 1
+    groupId: 1
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    replyToId: null
+    tags: ["popular"]
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: 'two'
+    fulltext: '  ["popular"]'
+    importData: null

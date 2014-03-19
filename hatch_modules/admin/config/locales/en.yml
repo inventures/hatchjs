@@ -1,0 +1,350 @@
+en:
+  admin:
+    title: Management area for %
+  back: Back to group
+  user:
+    viewProfile: View my profile
+    editAccont: Edit my account
+    signOut: Sign out
+  tabs:
+    users: Community
+    content: Content
+    pages: Pages
+    group: Settings
+    modules: Modules
+    audit: Audit
+  users:
+    headers:
+      manageCommunity: Manage community
+      users: Users
+      filter: Filter
+      tags: Tags
+      actions: Actions
+      memberName: Member name
+      tags: Tags
+      membership: Membership
+      since: Since
+      usersPerPage: Users per page
+      list: Member list
+      all: All users
+      members: Members
+      editors: Editors
+      pending: Pending
+      blacklisted: Blacklisted
+      inviteUsers: Invite users
+      sendMessage: Send message
+      profileFields: Profile fields
+      field: Field
+      type: Field type
+      mandatory: Mandatory
+      privacy: Privacy
+      editProfileField: Edit custom profile field
+      exportMembers: Export members
+    labels:
+      selectUsersToInvite: Select users to invite
+      inviteSubject: Invitation email subject
+      inviteBody: Invitation email body text
+      allMembers: all members
+      selectedMembers: 'selected members'
+      messageSubject: Message subject
+      messageBody: Message body text
+      fullname: Full name
+      name: Name
+      username: Username
+      emailAddress: Email address
+      text: Text
+      'select-list': 'Select list'
+      fieldName: Field name
+      fieldType: Field type
+      textarea: Textarea
+      radioList: Radio list
+      checkList: Check list
+      selectList: Select list
+      options: Options
+      mandatory: Mandatory
+      visibility: Visibility
+      registrationDescription: Description to show on registration form
+      helpText: Help text
+      exportFormat: Select export format
+    actions:
+      addTag: Add tag
+      removeTag: Remove tag
+      invite: Invite users
+      sendMessage: Send message
+      profileFields: Profile fields
+      export: Export data
+      memberActions: Member actions
+      removeMembers: Remove members
+      blacklistMembers: Blacklist members
+      unblacklistMembers: Un-blacklist members
+      sendInvites: Send invites
+      addProfileField: Add new profile field
+      save: Save
+      exportMembers: Export members
+    help:
+      inviteUsers: 'Enter the email addresses and/or usernames of the users you wish to invite to join this group'
+      enterUsernames: 'Enter email addresses and/or usernames'
+      sendMessage: This will send a message to
+      profileFields: Edit the custom profile fields for users within this group
+      deleteProfileField: 'Are you sure you wish to delete this profile field?'
+      removed: '% user(s) removed from community'
+      blacklisted: '% user(s) blacklisted'
+      unblacklisted: '% user(s) un-blacklisted'
+      messageSent: 'Message sent to % user(s)'
+      inviteSent: 'Invites sent to % user(s)'
+      fieldSaved: Profile field saved
+      fieldOrderSaved: Profile fields order saved
+      destroyUser: Delete this user from the system
+      destroyedUser: User has been deleted
+    validation:
+      sendMessage: Please enter a subject and message
+      invite: Please enter some email addresses or usernames to invite
+      fieldName: Please enter a field name
+  comment:
+    actions:
+      destroy: Delete
+      destroyConfirm: Are you sure you wish to delete this comment?
+  content:
+    actions:
+      common: Actions
+      delete: Delete
+      addTag: Add tag
+      removeTag: Remove tag
+      edit: Edit
+      destroy: Delete
+      destroyConfirm: Are you sure you wish to delete this post?
+      destroyed: post deleted
+    header:
+      content: Content
+      actions: Actions
+      filter: Filter
+      tags: Tags
+      moderation: Moderation
+      manageContent: Manage content
+    tableHead:
+      title: Content
+      text: Text
+      tags: Tags
+      flags: Flags
+      createdAt: Publish date
+      popularity: Popularity
+      actions: Actions
+      author: Author
+    loading: Loading content
+    all: All content
+    list: Content list
+    blogpost: Blog posts
+    discussion: Discussions
+    statusupdate: Status updates
+    poll: Polls
+    imported: Imported posts
+    manageTags: Manage tags
+    newblogpost: New blog post
+    newstatusupdate: New status update
+  moderation:
+    content: Content
+    comments: Comments
+  post:
+    actions:
+      publish: Publish post
+      draft: Save draft
+      previewImage: Upload a preview image
+      enterTags: Enter tags...
+    instructions:
+      tags: Determines which pages and widgets this post will show up on
+      excerpt: "Shows on the timeline as a summary with a 'read more' link"
+      previewImage: Shows up on the blog post summary
+      createdAt: Schedule this post for a future date
+    saved: Post saved successfully
+    createdAt: Publish date
+    title: Blog post title
+    tags: Tags
+    excerpt: Excerpt
+    previewImage: Preview image
+  tags:
+    headers:
+      manageTags: Manage tags
+      new: New tag
+      add: Add new tag
+      name: Tag name
+      sortOrder: Sort order
+      filter: Filter
+      posts: Posts
+      actions: Actions
+      edit: Edit tag
+    labels:
+      name: Tag name
+      sortOrder: Sort order
+      description: Description
+      filter: Enable automatic filter
+      applyFilter: Apply the new filter to existing data
+      permissions: Manage permissions
+    actions:
+      save: Save tag
+      cancel: Cancel
+      new: New tag
+      add: Add new tag
+    help:
+      noTagsDefined: No tags have been defined yet
+      deleteConfirm: 'Are you sure you wish to delete this tag?'
+  streams:
+    headers:
+      import: Import streams
+      manage: Manage streams
+      add: Add new stream
+      stream: Stream
+      query: Query
+      tags: Tags
+      lastRun: Last run
+      actions: Actions
+    actions:
+      manage: Manage streams
+      add: Add new stream
+      save: Save stream
+      edit: Edit
+    labels:
+      title: Stream name
+      source: Source
+      query: Query
+      tags: Tags
+      interval: 'Run how often?'
+      everyMinute: Every minute
+      every5Minutes: Every 5 minutes
+      every10Minutes: Every 10 minutes
+      everyHour: Every hour
+      everyDay: Every day
+    help:
+      tags: Enter tags to be applied to content imported for this stream
+      noStreams: No import streams have been defined
+      deleteConfirm: Are you sure you wish to delete this stream?
+  pages:
+    sitemap: Sitemap
+    specials: Special pages
+    headers:
+      pages: Pages
+      url: URL
+      privacy: Privacy
+      visibility: Visibility
+      actions: Actions
+      specialPages: Special pages
+      new: New page
+      edit: Edit page
+      newSpecial: New special page
+    actions:
+      new: New page
+      newSpecial: New special page
+      create: Create page
+      cancel: Cancel
+      save: Save page
+      edit: Edit
+    labels:
+      yes: 'Yes'
+      no: 'No'
+      title: Title
+      url: URL
+      leaveAsIs: Leave as-is
+      autoAssign: Auto-assign from title
+      customUrl: Custom URL
+      parentPage: Parent page
+      showInNavigation: 'Show in navigation?'
+      pageTemplate: Page template
+      metaTitle: '% title'
+      metaKeywords: '% keywords'
+      metaDescription: '% description'
+      noTemplate: No template
+      specialPageType: Special page type
+      privacy: Privacy
+      public: Public
+      community: Community
+      private: Private
+    help:
+      noSpecialPages: No special pages have been defined for this group yet
+      areYouSureDelete: 'Are you sure you wish to delete this page?'
+      overrideTitle: Overrides the title in the browser
+      drag: Drag me to the place you wish to add a new page
+      enterTitle: 'Type your page title and hit enter ...'
+      delete: Delete this page
+  group:
+    headers:
+      groupSettings: Group settings
+      moduleSettings: Module settings
+      settings: Settings
+      url: URL
+      headerfooter: Header and footer
+      analytics: Analytics
+      locale: Locale setting
+      changeUrl: Edit URL
+    labels:
+      title: Title
+      joinPermissions: Join permissions
+      freeToJoin: Free to join
+      requestToJoin: Request to join
+      inviteOnly: Invite only
+      favicon: Favicon
+      metaDescription: Meta description
+      metaKeywords: Meta keywords
+      navbarType: Navigation bar type
+      navbarDefault: Default
+      navbarFixed: Fixed
+      navbarMouseover: Show on mouse-over
+      navbarMouseclick: Show on mouse-click
+      navbarStyle: Navigation bar style
+      navbarInverse: Inverse
+      headerHtml: Default page header
+      footerHtml: Default page footer
+      url: Enter a new URL
+      googleAnalytics: Google Analytics ID
+      locale: Locale setting
+    actions:
+      uploadFavicon: Upload favicon
+      save: Save changes
+    help:
+      joinPermissions: Select how users are able to join this group
+      metaDescription: Enter the default meta description for pages within this group
+      metaKeywords: Enter the default meta keywords for pages within this group
+      faviconUpload: Upload a favicon for this group
+      googleAnalytics: Copy and paste your Google Analytics ID to link up your account
+      locale: Enter the locale setting for this group. Default is "en"
+      faviconUploaded: Favicon uploaded
+  modules:
+    headers:
+      manageModules: Manage modules
+      actions: Actions
+      modules: Modules
+      description: Description
+      enabled: Enabled
+      configure: Configure % module
+    actions:
+      save: Save settings
+      enable: Enable
+      edit: Edit
+    help:
+      disable: Disable this module
+  editconsole:
+    headers:
+      editconsole: Edit console
+      widgets: Widgets
+      layout: Layout
+      layouts: Layouts
+      design: Design
+      columns: Columns
+      custom: Custom
+      templates: Templates
+      html: HTML
+      themes: Themes
+      fonts: Fonts
+      style: Style
+      css: CSS
+      variables: Variables
+      bootswatch: Bootswatch
+    actions:
+      createTemplete: Create a new template
+      properties: Properties
+      select: Select element
+      similarElements: Similar elements
+      save: Save changes
+    help:
+      widgets: Click to add a widget to the page
+      custom: Enter your custom layout HTML here
+      noTemplates: No page templates have been defined
+

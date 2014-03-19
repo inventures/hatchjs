@@ -1,0 +1,57 @@
+<div data-id="modules" class="" data-remote-id="modules-table">
+    <table class="table modules-table" id="modules-table">
+        <thead>
+            <tr>
+                <th width="25%" colspan="2">
+                    <%- t('modules.headers.modules') %>
+                </th>
+                <th width="">
+                    <%- t('modules.headers.description') %>
+                </th>
+                <th width="70">
+                    <%- t('modules.headers.enabled') %>
+                </th>
+                <th width="70">
+                    <%- t('modules.headers.actions') %>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% modulesAvailableList.forEach(function (module) { if (module && !module.info.system && module.info.title) { %>
+                <tr>
+                    <td width="2%">
+                        <%- icon(module.info.icon || 'cog') %>
+                    </td>
+                    <td>
+                        <%= module.info.title || module.name %>
+                    </td>
+                    <td>
+                        <%= module.info.description || '' %>
+                    </td>
+                    <td>
+                        <% if (moduleEnabled(module.name)) { %>
+                            <%- moduleEnabled(module.name) ? icon(moduleConfigured(module.name) ? 'ok' : 'warning-sign') : '' %>
+                        <% } %>
+                    </td>
+                    <td nowrap="nowrap" align="right">
+                        <% if (moduleEnabled(module.name)) { %>
+                            <% if (module.info.settings) { %>
+                                <%- linkTo(
+                                    t('modules.actions.edit'),
+                                    pathTo.setupModule(module.name)
+                                ) %>&nbsp;
+                            <% } %>
+                            <a rel="tooltip" data-original-title="<%- t('modules.help.disable') %>" href="<%- pathTo.disableModule(module.name) %>">
+                                <i class="icon-remove"></i></a>
+                        <% } else { %>
+                            <%- linkTo(
+                                t('modules.actions.enable'),
+                                pathTo.enableModule(module.name)
+                            ) %>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }}); %>
+        </tbody>
+    </table>
+</div>

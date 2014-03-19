@@ -1,0 +1,22 @@
+<div class="page-title">
+    <h3><%- t('pages.headers.edit') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- formTagBegin({action: pathTo.updatePage(page.id), remote: true, id: 'page_form', class: 'form-vertical form-slim'}) %>
+                    <input type="hidden" name="_method" value="PUT" />
+
+                    <%- include _pageForm %>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> <%- t('pages.actions.save') %></button>
+                        <%- linkTo(t('pages.actions.cancel'), pathTo.pages(), {class: 'btn'}) %>
+                    </div>
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

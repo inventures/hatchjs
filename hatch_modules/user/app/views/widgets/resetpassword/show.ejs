@@ -1,0 +1,52 @@
+<%- widgetTitle() %>
+
+<% if (user) { %>
+
+<%- formTagBegin({action: pathTo.changePassword, method: 'post', class: 'form-horizontal', id: 'resetPasswordForm', remote: true }) %>
+    <input type="hidden" name="token" value="<%- token %>" />
+
+    <div class="control-group">
+        <label class="control-label" for="password"><%- 'New password' %></label>
+        <div class="controls">
+            <input type="password" class="input-xlarge" id="password" name="password" value="">
+            <i class="icon-asterisk text-error"></i>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="confirmPassword"><%- 'Confirm password' %></label>
+        <div class="controls">
+            <input type="password" class="input-xlarge" id="confirmPassword" name="confirmPassword" value="">
+            <i class="icon-asterisk text-error"></i>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary"><%- 'Save password' %></button>
+    </div>
+<%- formTagEnd() %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var redirect = '//<%- group.homepage.url %>';
+
+        //bind the form ajax
+        $('#resetPasswordForm').bind('ajax:success', function(e, data) {
+            $.noty({text: '<i class="icon-' + data.icon + '"></i> ' + data.message, type: data.status});
+
+            if (data.status !== 'error') {
+                setTimeout(function() {
+                    window.location = redirect;
+                }, 1500);
+            }
+        });
+    });
+</script>
+
+<% } else { %>
+
+<p>
+    Invalid reset password token
+</p>
+
+<% } %>

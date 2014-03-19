@@ -1,0 +1,55 @@
+<% pages.forEach(function (page) { %>
+    <tr class="page-item level<%- page.level || 0 %> <%- page.level == 0 ? 'homepage':'' %>" data-id="<%- page.id %>"
+    data-path="<%- page.url %>">
+        <td>
+            <i class="<%- page.level == 0 ? 'icon-home':'icon-move' %>"></i>
+            <%= page.title %>
+        </td>
+        <td> 
+            <%- page.url ? linkTo('/' + page.getUrlName(), '//' + page.url) : '' %> 
+        </td>
+        <td> 
+            <%- t('pages.labels.' + (page.privacy || 'public')) %> 
+        </td>
+        <td> 
+            <%- /true/.test(page.hideFromNavigation) ? t('common.hidden') : t('common.visible') %> 
+        </td>
+        <td>
+            <%- linkTo('Edit', pathTo.editPage(page.id), {class: '' }) %>
+            &nbsp;
+            <%- linkTo('<i class="icon-remove"></i>', pathTo.deletePage(page.id), {remote: true, method: 'delete', rel: 'tooltip', 'data-original-title': t('pages.help.delete'), rel: 'delete-page'}) %>
+        </td>
+    </tr>
+<% }); %>
+
+<tr class="splitter">
+    <td colspan="5">
+        <br>
+    </td>
+</tr>
+
+<tr class="new-page-form" style="display : none;">
+    <td colspan="5">
+        <%- formTagBegin({action: pathTo.createPage({ group_id: req.group.id }), remote: true, id: 'newPageFormInline', class: 'form-new-page' }) %>
+            <input type="hidden" name="parentId" id="parentId" />
+            <input type="hidden" name="order" id="order" />
+            <input type="hidden" name="inline" value="true" />
+
+            <div class="pull-left">
+                <input type="text" name="title" placeholder="<%- t('pages.help.enterTitle') %>">
+            </div>
+
+            <div class="pull-right">
+              <button type="submit" class="btn-link"><%- t('pages.actions.add') %></button>
+              <button type="button" class="btn-link" id="cancelButton"><%- t('common.cancel') %></button>
+            </div>
+        <%- formTagEnd() %>
+    </td>
+</tr>
+
+<tr class="page-item level0 new-page" data-id="new">
+    <td colspan="5">
+        <i class="icon-move"></i>
+        <span class="drag"><%- t('pages.help.drag') %></span>
+    </td>
+</tr>

@@ -1,0 +1,3 @@
+<%- widgetTitle() %>
+
+<div class="inline-edit html" data-html="<%- canEdit ? escape(widget.settings.content || '').replace(/^\s+|\s+$/g,'') : '' %>"><%- widget.settings && widget.settings.content || 'HTML Content not set. Double-click to edit.' %></div>

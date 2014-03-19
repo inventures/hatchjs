@@ -1,0 +1,83 @@
+<div class="form-group">
+    <label class="form-label" for="title"><%= t('tags.labels.name') %></label>
+    <div class="controls">
+        <input type="text" class="form-control" id="title" name="title" value="<%- theTag.title %>">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="sortOrder"><%= t('tags.labels.sortOrder') %></label>
+    <div class="controls">
+        <select id="sortOrder" name="sortOrder" class="form-control">
+            <% sortOrders.forEach(function (order) { %>
+                <option value="<%- order.value %>" <%- order.value === theTag.sortOrder ? 'selected="selected"':'' %>>
+                    <%- order.name %>
+                </option>
+            <% }) %>
+        </select>
+    </div>
+</div>
+
+<!--
+<div class="form-group">
+    <label class="form-label" for="description"><%= t('tags.labels.description') %></label>
+    <div class="controls">
+        <textarea id="description" name="description" class="input-xlarge span6 richtext" rows="5"><%- theTag.description %></textarea>
+    </div>
+</div>
+-->
+
+<div class="form-group">
+    <label class="form-label">
+        <input type="checkbox" class="" name="filterEnabled" id="filterEnabled" <%- theTag.filter ? 'checked="checked"':'' %> />
+        <%= t('tags.labels.filter') %>
+    </label>
+
+    <input type="hidden" name="filter" id="filterValue" value="<%- escape(theTag.filter) %>" />
+
+    <div class="filter <%- theTag.filter ? 'enabled':'' %>" id="filter-holder">
+        <div class="editor">
+            <div id="filter" rows="10"><%- theTag.filter || defaultFilter %></div>
+        </div>
+        <div class="filter-cover"></div>
+
+        <label class="checkbox">
+            <input type="checkbox" class="checkbox" name="filterExisting" id="filterExisting" />
+            <%= t('tags.labels.applyFilter') %>
+        </label>
+
+        <div id="filter-count" style="display : none;">
+            <span><%= __('Number of matches') %>: <strong id="filter-results-count">0</strong></span>
+            <a href="#" id="refresh-filter"><i class="icon-refresh"></i></a>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <% if(modelName === 'User') { %>
+        <hr/>
+
+        <div class="panel-group" id="permissions">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#permissions" href="#list">
+                            <i class="icon-lock"></i> <%- t('tags.labels.permissions') %>
+                        </a>
+                    </h4>
+                </div>
+                <div id="list" class="accordion-body collapse <%- theTag.permissions && theTag.permissions.length > 0 ? 'in':'' %>">
+                    <div class="accordion-inner">
+                        <ul class="list-unstyled" style="margin: 10px;">
+                            <%- renderPermissions(permissions.root) %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %>
+
+    <script type="text/javascript">
+        <% include js/tagsform.js %>
+    </script>
+</div>

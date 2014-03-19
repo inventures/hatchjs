@@ -1,0 +1,81 @@
+en:
+  common:
+    cancel: Cancel
+    itemsPerPage: items per page
+    bragHatch: 'Built on the Hatch Platform'
+    imageUploaded: image uploaded
+    'yes': 'Yes'
+    'no': 'No'
+    public: Public
+    membersOnly: Members only
+    private: Private
+    visible: Visible
+    hidden: Hidden
+    enterTags: 'Enter tags ....'
+    help: Help
+    renderSpeed: Rendered in
+    hatchCredit: 'Built on Hatch.js'
+    text: Text
+    email: Email
+    pause: Pause
+    play: Play
+    undo: Undo
+  layout:
+    manageGroup: Manage group
+    toggleEditConsole: Edit console
+    signIn: Sign in
+    joinGroup: Join group
+    register: Register
+    groupAccessRequestedTitle: Join request awaiting confirmation
+    groupAccessRequestedDescription: Your request to join this group is pending approval from a group administrator.
+    invitedToGroup: You have been invited to join this group
+    acceptInvitation: Accept invitation
+    ignoreInvitation: ignore
+    registration:
+      inProgress: Registration in progress
+      suggestProceed: It looks like you are halfway through your registration. Please % to complete it.
+      go: go here
+    renderSpeed: rendered in %s
+    joinGroup: Join this group
+    viewProfile: View my profile
+    editProfile: Edit my account
+    signOut: Sign out
+  models:
+    Content:
+      messages:
+        saved: Post saved successfully
+      fields:
+        title: Blog post title
+        excerpt:
+          label: Excerpt
+          description: "Shows on the timeline or as a summary with a 'read more' link"
+        previewImage:
+          label: Preview image
+          description: "The preview image will show along-side the excerpt in the timeline or overview page"
+        tags:
+          label: Tags
+          description: Enter tags separated by a space or comma
+        createdAt:
+          label: Publish date
+          description: "Enter a date in any format - e.g. '1st March 2012 13:30', 'tomorrow' or 'now' to publish immediately"
+        priority:
+          label: Priority
+          description: "Priority combined with publish date determines the position on the page that this post will show"
+    Page:
+      messages: 
+        saved: Page saved
+        added: Page added
+    ImportStream:
+      messages:
+        saved: Import stream saved
+        deleted: Import stream deleted
+        toggled: Import stream toggled
+    Tag:
+      messages:
+        added: Tag added
+        removed: Tag removed
+        deleted: Tag deleted
+        saved: Tag saved
+  widget:
+    settings:
+      title: Edit widget settings

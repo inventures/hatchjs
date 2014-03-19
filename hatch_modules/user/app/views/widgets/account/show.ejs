@@ -1,0 +1,215 @@
+<%- widgetTitle() %>
+
+<% if(req.user) { %>
+    <%- formTagBegin({action:pathTo.update(), remote: true, method: 'post', class: 'form', id: 'accountForm' }) %>
+        <% if(req.user.type != "temporary") { %>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="controls">
+                    <p class="form-control-static"><%- req.user.username %></p>
+                </div>
+            </div>
+        <% } else { %>
+            <p>
+                <%- __('Please complete your registration by filling out the remaining details using the form below') %>
+            </p>
+            <div class="form-group">
+                <label for="username"><%- __('Username') %></label>
+                <div class="controls">
+                    <input type="text" class="form-control" id="username" name="username" value="<%- req.user.username %>">
+                    <i class="icon-asterisk text-error" rel="tooltip" title="<%- __('mandatory field') %>"></i>
+                    <p class="help-block"><%- __('Please enter your username') %></p>
+                </div>
+            </div>
+        <% } %>
+
+        <div class="form-group">
+            <input type="hidden" id="avatar" name="avatar" value="<%- req.user.avatar %>" />
+            <label for="avatar"><%- __('Profile picture') %></label>
+            <div class="controls">
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="#" id="avatarButton"><i class="icon-picture"></i> <%- __('Click to upload a profile picture') %></a>
+                    <a href="#" id="remove-avatar" class="btn btn-primary"><i class="fa fa-trash-o"></i></a>
+                </div>
+
+                <div id="avatar-preview-holder" <%- req.user.avatar ? '':' style="display : none;"' %>>
+                    <br/>
+                    <img src="<%- req.user.avatar %>" id="avatarPreview" width="90" height="90" class="" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="firstname"><%- __('Full name') %></label>
+            <div class="controls">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="firstname" name="firstname" value="<%- req.user.firstname %>">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="lastname" name="lastname" value="<%- req.user.lastname %>">
+                    </div>
+                </div>
+            </div>
+
+            <p class="help-block">
+                <%- __('Your full name is shown on your profile and in the group user directory') %>
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="oneLiner"><%- __('One liner') %></label>
+            <div class="controls">
+                <textarea id="oneLiner" name="oneLiner" class="form-control" rows="2"><%- req.user.oneLiner %></textarea>
+                <p class="help-block"><%- __('Enter a line or two to describe yourself to other members') %></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="email"><%- __('Email address') %></label>
+            <div class="controls">
+                <input type="text" class="form-control" id="email" name="email" value="<%- req.user.email || '' %>">
+                <i class="icon-asterisk text-error" rel="tooltip" title="<%- __('mandatory field') %>"></i>
+                <i class="icon-lock" rel="tooltip" title="<%- __('private field - will not be displayed on your profile') %>"></i>
+            </div>
+            <p class="help-block">
+                <%- __('We will send you email notifications to keep you up to date with activity on this group') %>
+            </p>
+        </div>
+
+        <% if(req.user.type != 'temporary' && Object.keys(mailTypes).length > 0) { %>
+            <div class="form-group">
+                <label for=""><%- __('Receive emails for') %></label>
+                <div class="controls">
+                    <% Object.keys(mailTypes).forEach(function(mailType) { %>
+                        <label class="checkbox">
+                            <input type="checkbox" name="mailSettings[<%- mailType %>]" <%- (req.user.mailSettings || {})[mailType] == 'false' ? '':'checked="checked"' %> />
+                            <%- __(mailTypes[mailType].name || mailType) %>
+                        </label>
+                    <% }) %>
+                </div>
+            </div>
+        <% } %>
+
+        <% if(req.group.customProfileFields && req.group.customProfileFields.length > 0) { %>
+            <hr/>
+            <% req.group.profileFields.forEach(function(field) {
+                var value = req.user.otherFields ? req.user.otherFields[field.name] : '';
+                field.name = 'custom-' + field.name;
+                %>
+                <%- formInput(field, value) %>
+            <% }) %>
+        <% } %>
+
+        <hr/>
+
+        <% if(req.user.type != 'temporary') { %>
+            <div class="form-group" id="change-password-button-holder">
+                <label><%- __('Password') %></label>
+                <div class="controls">
+                    <a class="btn btn-default" href="#" id="change-password-button"><i class="icon-lock"></i> <%- __('Click to change password') %></label></a>
+                </div>
+            </div>
+        <% } %>
+
+        <div id="change-password" style="<%- req.user.type == 'temporary' && !req.user.hasPassword? '':'display: none;' %>">
+            <% if(req.user.type != 'temporary') { %>
+                <div class="form-group">
+                    <label for="currentPassword"><%- __('Current password') %></label>
+                    <div class="controls">
+                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" value="">
+                    </div>
+                </div>
+            <% } %>
+
+            <div class="form-group">
+                <label for="password"><%- __('New password') %></label>
+                <div class="controls">
+                    <input type="password" class="form-control" id="password" name="password" value="">
+                    <i class="icon-asterisk text-error"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword"><%- __('Confirm password') %></label>
+                <div class="controls">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="">
+                    <i class="icon-asterisk text-error"></i>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <% if(req.user.type == 'temporary') { %>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary"><%- __('Complete registration') %></button>
+            </div>
+        <% } else { %>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary"><%- __('Save account') %></button>
+                <button type="button" class="btn" id="reset-button"><%- __('Reset') %></button>
+
+                <button type="button" class="btn btn-danger pull-right"><i class="icon-remove"></i> <%- __('Cancel my account') %></button>
+            </div>
+        <% } %>
+
+    <%- formTagEnd() %>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            //bind the form ajax
+            $('#accountForm').bind('ajax:success', function(e, data) {
+                var redirect = '<%- redirect %>';
+
+                if(data.status == "success") {
+                    //refresh the page
+                    setTimeout(function() { window.location = redirect || window.location; }, 1000);
+                }
+            });
+
+            //remove profile pic link
+            $('#remove-avatar').bind('click', function() {
+                var src = '/img/default-profile-pic.png';
+
+                $('#avatar').val(src);
+                $('#avatarPreview').attr('src', src);
+
+                return false;
+            });
+
+            $('#avatarButton').on('click', function () {
+                window.hatch.upload.upload({}, function (err, data) {
+                    var url = data.media.url;
+
+                    $('#avatar').val(url);
+                    $('#avatarPreview').attr('src', url);
+                    $('#avatar-preview-holder').show();
+
+                    $.noty({ text: '<i class="icon-ok"></i> Profile picture uploaded', type: 'success' });
+                });
+            });
+
+            //bind save password button to show the form
+            $('#change-password-button').bind("click", function() {
+                $('#change-password-button-holder').hide();
+                $('#change-password').show();
+
+                return false;
+            });
+
+            $('#reset-button').bind("click", function() {
+                if(confirm('You will lose all changes. Are you sure?')) {
+                    window.location = window.location;
+                };
+            });
+        });
+    </script>
+
+<% } else { %>
+
+    <p>
+        <%- __('Please sign in or register') %>
+    </p>
+
+<% } %>

@@ -1,0 +1,139 @@
+@media (max-width: 979px) {
+    body, body.navbar-fixed
+    {
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    ul.noty_cont.noty_layout_topRight {
+        right : 0;
+        top : 0;
+    }
+
+    ul.noty_cont {
+        width : 100%;
+    }
+
+    ul.noty_cont li {
+        width : 100%;
+        margin: 0 0 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    header
+    {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+
+        .page-header
+        {
+            -webkit-box-ordinal-group: 2;
+            -moz-box-ordinal-group: 2;
+            box-ordinal-group: 2;
+
+            margin-left : 2px;
+            margin-right: 2px;
+        }
+
+        .nav-collapse
+        {
+            -webkit-box-ordinal-group: 1;
+            -moz-box-ordinal-group: 1;
+            box-ordinal-group: 1;
+
+            //negative margins to make it fit
+            margin: -18px -10px 0;
+
+            .nav
+            {
+                margin-bottom: 0;
+            }
+
+            .subnav .nav > li > a {
+                border-radius: 0 ! important;
+                margin-bottom: 0;
+            }
+
+            .dropdown-menu
+            {
+                display : none;
+
+                a
+                {
+                    color : @linkColor;
+                }
+
+                a:hover
+                {
+                    color: @dropdownLinkColorHover;
+                    background: @dropdownLinkBackgroundHover;
+                }
+            }
+
+            .open .dropdown-menu
+            {
+                display : block;
+            }
+        }
+    }
+
+    .module .content
+    {
+        padding: 3px 2px;
+    }
+
+    .content-item {
+        margin-left : -2px;
+        margin-right : -2px;
+    }
+
+    .navbar-inner
+    {
+        padding : 0 12px;
+    }
+
+    // Modals
+    .modal {
+        position: fixed;
+        top:   20px ! important;
+        left:  20px;
+        right: 20px;
+        //bottom: 20px;
+        width: auto ! important;
+        margin: 0 ! important;
+        &.fade.in { top: 20px; }
+
+        .btn-toolbar
+        {
+            clear : left;
+        }
+    }
+
+  .modal-header .close {
+    padding: 10px;
+    margin: -10px;
+  }
+}
+
+.span3 .span3-1, .span2 .span2-1
+{
+    width : @gridColumnWidth + @gridGutterWidth;
+    float : left;
+}
+
+.span3 .span3-2, .span2 .span2-2
+{
+    width : @gridColumnWidth*2 + @gridGutterWidth*3;
+    float : left;
+}
+
+.span2 .span2-offset0, .span3 .span3-offset0
+{
+    margin-left : @gridGutterWidth;
+}

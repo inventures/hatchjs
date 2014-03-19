@@ -1,0 +1,40 @@
+<div class="page-title">
+    <h3>Sitemap</h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <table class="table" id="pages-table">
+                    <thead>
+                        <tr>
+                            <th width="40%">
+                                <%- t('pages.headers.pages') %>
+                            </th>
+                            <th width="">
+                                <%- t('pages.headers.url') %>
+                            </th>
+                            <th width="10%">
+                                <%- t('pages.headers.privacy') %>
+                            </th>
+                            <th width="10%">
+                                <%- t('pages.headers.visibility') %>
+                            </th>
+                            <th width="55">
+                                <%- t('pages.headers.actions') %>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%- include _table %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    <% include js/pagestable.js %>
+</script>

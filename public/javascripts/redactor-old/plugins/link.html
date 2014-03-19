@@ -1,0 +1,236 @@
+<!--
+<form id="redactorInsertLinkForm" method="post" action="" enctype="multipart/form-data">
+	<div id="redactor_tabs">
+		<a href="javascript:void(null);" class="redactor_tabs_act">URL</a>
+		<a href="javascript:void(null);">Email</a>
+		<a href="javascript:void(null);">%RLANG.anchor%</a>
+		<a href="javascript:void(null);">%RLANG.file%</a>
+	</div>
+	
+	<input type="hidden" id="redactor_tab_selected" value="1" />
+	
+	<div class="redactor_tab" id="redactor_tab1">
+		<table class="redactor_ruler">
+			<tr>
+				<td nowrap>URL</td>
+				<td width="100%"><input id="redactor_link_url" style="width: 99%; font-size: 16px;"  /></td>
+			</tr>
+			<tr>
+				<td>%RLANG.text%</td>
+				<td><input class="redactor_link_text" id="redactor_link_url_text" style="width: 99%; font-size: 16px;" /></td>
+			</tr>
+		</table>
+	</div>
+	<div class="redactor_tab" id="redactor_tab2" style="display: none;">
+		<table class="redactor_ruler">
+			<tr>
+				<td nowrap>Email</td>
+				<td width="100%"><input id="redactor_link_mailto" style="width: 99%; font-size: 16px;"  /></td>
+			</tr>
+			<tr>
+				<td>%RLANG.text%</td>
+				<td><input class="redactor_link_text" id="redactor_link_mailto_text" style="width: 99%; font-size: 16px;" /></td>
+			</tr>
+		</table>
+	</div>
+	<div class="redactor_tab" id="redactor_tab3" style="display: none;">
+		<table class="redactor_ruler">
+			<tr>
+				<td nowrap>%RLANG.anchor%</td>
+				<td width="100%"><input id="redactor_link_anchor" style="width: 99%; font-size: 16px;"  /></td>
+			</tr>
+			<tr>
+				<td>%RLANG.text%</td>
+				<td><input class="redactor_link_text" id="redactor_link_anchor_text" style="width: 99%; font-size: 16px;" /></td>
+			</tr>
+		</table>
+	</div>
+	<div class="redactor_tab" id="redactor_tab4" style="display: none;">
+		<table class="redactor_ruler">
+			<tr>
+				<td>%RLANG.text%</td>
+				<td><input class="redactor_link_text" id="redactor_link_file_text" style="width: 99%; font-size: 16px;" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+				
+					<input type="file" id="redactor_file" name="file" />
+				
+				</td>
+			</tr>
+		</table>	
+		
+	</div>
+
+
+</form>
+
+<span class="redactor_btns_box">
+<input type="button" id="redactor_insert_link_btn" value="%RLANG.insert%" />&nbsp;&nbsp;
+<a href="javascript:void(null);" style="color: #777; font-size: 12px;" id="redactor_btn_modal_close">%RLANG.cancel%</a>
+</span>
+<div style="clear: both;"></div>
+-->
+
+<form>
+<div class="" id="modal-link" style="">
+    <div class="modal-body">
+        
+        <ul class="nav nav-tabs" id="media-tabs">
+          <li class="active"><a href="#link-url" data-toggle="tab">Enter URL</a></li>
+          <li><a href="#link-page" data-toggle="tab">Another page</a></li>
+          <li><a href="#link-group" data-toggle="tab">Another group</a></li>
+          <li><a href="#link-content" data-toggle="tab">Existing content</a></li>
+        </ul>
+         
+        <div class="tab-content">
+          <div class="tab-pane active" id="link-url">
+            
+            <div class="control-group">
+                <label class="control-label" for="href">
+                    Enter a URL
+                </label>
+                <div class="controls">
+                    <input id="href" name="href" type="text" placeholder="http://..." />
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="title">
+                    Link title (optional)
+                </label>
+                <div class="controls">
+                    <input id="title" name="title" type="text" />
+                </div>
+            </div>
+            
+            <div class="control-group">
+                <label class="control-label" for="target">
+                    Target window
+                </label>
+                <div class="controls">
+                    <select id="target" name="target">
+                        <option value="">Same window</option>
+                        <option value="_blank">New window</option>
+                    </select>
+                </div>
+            </div>
+            
+          </div>
+          <div class="tab-pane" id="link-page">
+          
+            <div class="control-group">
+                <label class="control-label" for="pageId">
+                    Select page
+                </label>
+                <div class="controls">
+                    <select id="pageId" name="pageId">
+                        <option value="">Please select</option>
+                        <option value="1">Homepage</option>
+                        <option value="2">Another page</option>
+                        <option value="3">Page 3</option>
+                        <option value="4">Page 10</option>
+                    </select>
+                </div>
+            </div>
+            
+          </div>
+          <div class="tab-pane" id="link-group">
+          
+            <div class="control-group">
+                <label class="control-label" for="groupId">
+                    Select group
+                </label>
+                <div class="controls">
+                    <select id="groupId" name="groupId">
+                        <option value="">Please select</option>
+                        <option value="1">My other group</option>
+                        <option value="2">Another group</option>
+                        <option value="3">Group 3</option>
+                        <option value="4">Group 10</option>
+                    </select>
+                </div>
+            </div>
+            
+          </div>
+          <div class="tab-pane" id="link-content">
+                
+                <div class="control-group">
+                    <label class="control-label" for="content-search">
+                        Search for content to link to
+                    </label>
+                    <div class="controls">
+                        <div class="input-append">
+                            <input id="content-search" name="search" type="text" placeholder="Enter a keyword..." /><button class="btn">Search</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th width="5%"></th>
+                            <th>
+                                Content
+                            </th>
+                            <th width="30%">
+                                Publish date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="radio" value="url" name="modal-link-content" />
+                            </td>
+                            <td>
+                                Content title
+                            </td>
+                            <td>
+                                01 Jan 2012
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" value="url" name="modal-link-content" />
+                            </td>
+                            <td>
+                                Content title
+                            </td>
+                            <td>
+                                01 Jan 2012
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" value="url" name="modal-link-content" />
+                            </td>
+                            <td>
+                                Content title
+                            </td>
+                            <td>
+                                01 Jan 2012
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="modal-footer">
+        <div class="btn-toolbar" style="margin : 0;">
+            <div class="btn-group">
+                <button class="btn btn-primary" type="button" id="redactor_insert_link_btn">Insert link</button>
+            </div>
+            <div class="btn-group">
+                <a class="btn" data-dismiss="modal" id="redactor_btn_modal_close">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+

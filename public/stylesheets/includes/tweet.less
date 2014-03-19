@@ -1,0 +1,131 @@
+.tweet
+{
+    background: #fff;
+    color : #666;
+    padding : 12px;
+    //max-width : 500px ! important;
+    margin : 12px 0;
+
+    border: #DDD 1px solid!important;
+    border-radius : 5px ! important;
+    border-top-color: #EEE!important;
+    border-bottom-color: #BBB!important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)!important;
+
+    .avatar
+    {
+        width : 32px;
+        margin-right : 8px;
+
+        img
+        {
+            width : 32px;
+            height : 32px;
+        }
+    }
+
+    .p-author
+    {
+        line-height: 1.2;
+        font-size : 15px;
+        font-family: Helvetica, Arial, Sans-serif;
+
+        a.screen-name:hover
+        {
+            text-decoration: none;
+
+            .p-name
+            {
+                text-decoration: underline;   
+            }
+        }
+
+        .p-name
+        {
+            display : block;
+            font-weight: bold;
+            color : #666;
+        }
+
+        .p-nickname
+        {
+            display : block;
+            color : #aaa;
+            font-weight: normal;
+            text-decoration: none ! important;
+
+            &:hover
+            {
+                text-decoration: none ! important;
+            }
+        }
+    }
+
+    .follow-button
+    {
+        float : right;
+        height : 40px;
+        width : 80px;
+        text-align: right;
+    }
+
+    .tweet-content
+    {
+        clear : left;
+        margin-top: 6px;
+        font-family : Georgia,Palatino,serif!important;
+        font-size : 16px;
+        line-height: 22px;
+    }
+
+    .tweet-footer
+    {
+        font-size : 15px;
+        font-family: Helvetica, Arial, Sans-serif;
+        min-height : 21px;
+
+        a
+        {
+            color : #666;
+        }
+    }
+
+    .tweet-actions
+    {
+        float : right;
+        display : block;
+        margin : 0;
+
+        li
+        {
+            display : inline;
+            list-style: none;
+            margin-right : 10px;
+
+            i
+            {
+                font-weight: bold;
+                text-decoration: none ! important;
+                font-size : 1.3em;
+            }
+
+            i.icon-share-alt
+            {
+                transform: rotate(180deg);
+                -ms-transform: rotate(180deg); /* IE 9 */
+                -webkit-transform: rotate(180deg); /* Safari and Chrome */
+                -o-transform: rotate(180deg); /* Opera */
+                -moz-transform: rotate(180deg); /* Firefox */
+            }
+
+            i.icon-retweet
+            {
+                transform: rotate(90deg);
+                -ms-transform: rotate(90deg); /* IE 9 */
+                -webkit-transform: rotate(90deg); /* Safari and Chrome */
+                -o-transform: rotate(90deg); /* Opera */
+                -moz-transform: rotate(90deg); /* Firefox */
+            }
+        }
+    }
+}

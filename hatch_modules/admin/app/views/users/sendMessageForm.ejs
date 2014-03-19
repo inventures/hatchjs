@@ -1,0 +1,45 @@
+<div class="page-title">
+    <h3><%- t('users.headers.sendMessage') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <p>
+                    <%- t('users.help.sendMessage') %>
+                    <% if(selectedUsers.length > 0) { %>
+                        <strong><%- selectedUsers.length %> <%- t('users.labels.selectedMembers') %></strong>
+                    <% } else { %>
+                        <strong><%- t('users.labels.allMembers') %></strong>.
+                    <% } %>
+                </p>
+
+                <%- formTagBegin({ action: pathTo.sendMessage, remote: true, method: 'post', id: 'send-message-form', class: 'form-slim' }) %>
+                    <hr>
+                    
+                    <input type="hidden" name="selectedUsers" value='<%- JSON.stringify(selectedUsers) %>' />
+
+                    <div class="form-group">
+                        <label class="form-label" for="title"><%- t('users.labels.messageSubject') %></label>
+                        <div class="controls">
+                            <input type="text" class="form-control" id="subject" name="subject" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="description"><%- t('users.labels.messageBody') %></label>
+                        <div class="controls">
+                            <textarea id="body" name="body" class="input-xlarge span6 richtext" rows="10"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%- t('users.actions.sendMessage') %></button>
+                        <a href="<%- pathTo.community() %>" class="btn"><%- t('common.cancel') %></a>
+                    </div>
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

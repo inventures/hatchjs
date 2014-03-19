@@ -1,0 +1,25 @@
+<%- widgetTitle() %>
+
+<% posts.forEach(function (post) { %>
+	<%- renderContent(post) %>
+<% }) %>
+
+<% if (posts.length === 0) { %>
+	<p>
+		No posts to display
+	</p>
+<% } %>
+
+<% if (count > (posts.length + offset) && widget.settings.paging !== 'none') { %>
+	<div id="more-posts-<%- widget.id %>-<%- offset %>">
+		<ul class="pager">
+			<li><a href="<%- widgetCoreAction('show') %>?offset=<%- posts.length + offset %>" rel="ajax" target="#more-posts-<%- widget.id %>-<%- offset %>">Show more ...</a></li>
+		</ul>
+	</div>
+<% } %>
+
+<% if (!request.query.offset) { %>
+	<script type="text/javascript">
+		<% include js/handler.js %>
+	</script>
+<% } %>

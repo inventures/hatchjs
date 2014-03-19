@@ -1,0 +1,68 @@
+<div class="page-title">
+    <h3><%- t('tags.headers.manageTags') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2" width="">
+                                <%- t('tags.headers.name') %>
+                            </th>
+                            <th width="12%">
+                                <%- t('tags.headers.sortOrder') %>
+                            </th>
+                            <th width="8%">
+                                <%- t('tags.headers.filter') %>
+                            </th>
+                            <th width="10%">
+                                <%- t('tags.headers.posts') %>
+                            </th>
+                            <th width="7%">
+                                <%- t('tags.headers.actions') %>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(tags.length == 0) { %>
+                            <tr>
+                                <td colspan="5"><%- t('tags.help.noTagsDefined') %></td>
+                            </tr>
+                        <% } %>
+                        <% tags.forEach(function(tag) { %>
+                            <tr>
+                                <td width="2%">
+                                    <i class="icon-tag"></i>
+                                </td>
+                                <td>
+                                    <%- linkTo(tag.title, 'filter/' + tag.id) %>
+                                </td>
+                                <td>
+                                    <%- tag.sortOrder %>
+                                </td>
+                                <td>
+                                    <% if(tag.filter) { %>
+                                        <i class="icon-ok"></i>
+                                    <% } else { %>
+                                        -
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <%- formatNumber(tag.count) %>
+                                </td>
+                                <td>
+                                    <%- linkTo('Edit', pathTo.editTag(type, tag.id.toString())) %>
+                                    &nbsp;
+                                    <%- linkTo('<i class="icon-remove"></i>', pathTo.deleteTag(type, tag.id.toString()), { remote: true, method: 'DELETE', "data-confirm": t('tags.help.deleteConfirm') }) %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

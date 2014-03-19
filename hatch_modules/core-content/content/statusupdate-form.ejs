@@ -1,0 +1,73 @@
+<% var form = formFor(post, {
+    remote: true,
+    action: (post.id ? pathTo.updateContent(post.id) : pathTo.createContent) + '.json',
+    id: 'content-form',
+    class: 'content-form'
+}) %>
+
+<%- form.begin() %>
+    <%- form.input('type', {type: 'hidden'}) %>
+    
+    <div class="row">
+        <div class="col-md-8">
+            <br>
+            <div class="form-group">
+                <%- form.textarea('text', {class: 'form-control input-lg', style: 'height: 400px ! important', placeholder: t('post.text')}) %>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <br>
+
+            <div class="form-group">
+                <%- form.submit(t('post.actions.publish'), {class: 'btn btn-primary'}) %>
+                &nbsp;
+                <%- form.button(t('post.actions.draft'), {class: 'btn'}) %>
+            </div>
+
+            <div class="form-group">
+                <%- form.label('createdAt', t('post.createdAt')) %>
+                <p class="help"><%= t('post.instructions.createdAt') %></p>
+                <div class="input-append date col-md-4 no-padding" data-date="<%- post.createdAt && moment(post.createdAt).format(datetimeformat.split(' ')[0]) %>" data-date-format="<%- datetimeformat.split(' ')[0].toLowerCase() %>">
+                    <input type="text" class="form-control" name="Content[createdAt[date]" value="<%- post.createdAt && moment(post.createdAt).format(datetimeformat.split(' ')[0]) %>">
+                    <span class="add-on"><span class="arrow"></span><i class="icon-th"></i></span> 
+                </div>
+                <div class="input-append bootstrap-timepicker-component col-md-5 col-md-offset-2">
+                    <input type="text" class="timepicker-24" name="Content[createdAt[time]" value="<%- post.createdAt && moment(post.createdAt).format(datetimeformat.split(' ')[1]) %>">
+                    <span class="add-on"><span class="arrow"></span><i class="icon-time"></i></span> 
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="form-group">
+                <%- form.label('tags', t('post.tags')) %>
+                <p class="help"><%= t('post.instructions.tags') %></p>
+                <select id="tags" name="Content[tags]" multiple="multiple" class="chzn-select-create form-control" data-placeholder="<%- t('post.actions.enterTags') %>">
+                    <% tags.forEach(function (tag) { %>
+                        <option value="<%- tag.id %>"<%- post.tags.find(tag.id, 'id') ? ' selected="selected"':'' %>><%- tag.title %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+    </div>
+<%- form.end() %>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.input-append.date').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: '<%- datetimeformat.split(' ')[0].toLowerCase() %>'
+        });
+
+        $('.timepicker-24').timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            defaultTime: false
+        });
+    });
+</script>

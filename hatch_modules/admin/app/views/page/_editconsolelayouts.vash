@@ -1,0 +1,11 @@
+<div class="column-layouts tab-pane @(model.req.page.grid ? '':'active')" id="columns-layouts">
+  <ul>
+    @model.req.grids.forEach(function (grid) {
+        <li class="@(model.req.page && grid.name === model.req.page.grid ? 'selected-grid' : '')" onclick="window.hatch.editConsole.selectGrid('@grid.name', this)">
+            @html.raw(grid.preview)
+        </li>
+    })
+  </ul>
+</div>
+
+<div class="clearfix"></div>

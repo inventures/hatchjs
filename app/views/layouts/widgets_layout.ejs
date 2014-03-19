@@ -1,0 +1,29 @@
+<div class="widget<%- widget.notEditable ? ' not-editable-widget' : ''%> contrast-<%- widget.settings.contrastMode || '0' %> <%- widget.settings.visibility %>" data-id="<%- widget.id %>" data-remote-id="<%- widget.id %>" id="<%- widget.id %>" data-type="<%- widget.type %>">
+
+	<% if (canEdit && !widget.hasOwnProperty('notEditable')) { %>
+		<div class="pull-right">
+			<div class="widget-controls">
+
+				<a href="#move" class="move" rel="tooltip" title="drag to move widget"><i class="fa fa-arrows"></i></a>
+
+				<a href="<%- widgetCoreAction('contrast') %>" data-remote="true" class="adjust" rel="tooltip" title="<%= __('toggle widget style') %>"><i class="fa fa-adjust"></i></a>
+
+				<% if (inlineEditAllowed) { %>
+					<a href="#inline-edit" class="inline-edit-link" rel="tooltip" title="<%= __('click to edit widget contents') %>"><i class="fa fa-pencil"></i></a>
+				<% } %>
+
+				<a href="<%- widgetCoreAction('settings') %>" data-modal="true" data-remote="true" class="edit" rel="tooltip" title="<%= __('click to edit settings') %>"><i class="fa fa-cog"></i></a>
+
+				<% if (typeof disableDelete === 'undefined') { %> 
+					<a href="<%- widgetCoreAction('destroy') %>" data-remote="true" class="delete" rel="tooltip" title="click to delete widget"><i class="fa fa-trash-o"></i></a>
+				<% } %>
+
+			</div>
+		</div>
+	<% } %>
+
+	<div class="content clearfix">
+		<%- body %>
+	</div>
+</div>
+

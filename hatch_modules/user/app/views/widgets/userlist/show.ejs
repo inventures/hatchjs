@@ -1,0 +1,62 @@
+<div data-page="<%- pagination.page %>" class="content">
+    <% if(!widget.settings || widget.settings.title == null || widget.settings.title.length > 0) { %>
+        <h2><%- widget.settings && widget.settings.title || 'User list' %></h2>
+    <% } %>
+
+    <% if(users.length == 0) { %>
+        <p><%- __('No users to display') %></p>
+    <% } %>
+
+    <table class="table member-list">
+        <tbody>
+        <% users.forEach(function(user) { %>
+            <tr>
+                <td width="40">
+                    <img src="<%= getUrl(user.avatar, '40x40') %>" class="img" width="40" height="40"/>
+                </td>
+                <td>
+                    <a href="<%- specialPagePath('profile', { username: user.username }) %>"><%- user.displayName %></a>
+                    <br/>
+
+                    <% if(profileFields.length > 0 && user.otherFields) { %>
+                        <% profileFields.forEach(function(field) { %>
+                            <% if(!user.otherFields || !user.otherFields[field.name]) return; %>
+                            <dt><%- field.title %></dt>
+                            <dd><%- (user.otherFields || [])[field.name] %></dd>
+                        <% }) %>
+                    <% } else { %>
+                        <%- user.oneLiner %>
+                    <% } %>
+                </td>
+                <td>
+                    <% if(req.user && req.user.id != user.id) { %>
+                        <% if(user.isFollowed) { %>
+                            <%- linkToRemote('<i class="icon-remove"></i>', pathTo.unfollow(user.id), { class: 'btn btn-primary pull-right', 'data-target-id': 'nothing', rel: 'follow' }) %>
+                        <% } else { %>
+                            <%- linkToRemote('<i class="icon-star"></i> <span class="text">' + __('Follow') + '</span>', pathTo.follow(user.id), { class: 'btn btn-primary pull-right', 'data-target-id': 'nothing', rel: 'follow' }) %>
+                        <% } %>
+                    <% } %>
+                </td>
+            </tr>
+        <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<% if(widget.settings.paging !== "hide") { %>
+    <%- paging(pagination, widgetAction('index?' + (letter ? 'letter=' + letter + '&':'') + 'page='), { 'data-target-id': widget.id }, { class: 'pagination-centered' }) %>
+<% } %>
+
+<script type="text/javascript">
+    $('.widget[data-id=<%- widget.id %>] a[rel=follow]').unbind().on('ajax:success', function(e, data) {
+        $.noty({
+            type: data.status,
+            text: '<i class="icon-' + (data.icon || 'ok') + '"></i> ' + data.message
+        });
+
+        //refresh the widget
+        $('.widget[data-id=<%- widget.id %>]').load('<%- widgetAction('index') %>?page=' + $('.widget[data-id=<%- widget.id %>] div[data-page]').attr('data-page'), function(html) {
+            $(this).replaceWith(html);
+        });
+    });
+</script>

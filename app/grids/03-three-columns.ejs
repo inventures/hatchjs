@@ -1,0 +1,23 @@
+<div class="header-container">
+    <div class="container">
+        <div class="row">
+            <div class="column col-md-<%- size[0] || 12 %> widget-list">
+                <%- column[0] %>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+      <div class="column col-md-<%- size[1] || 4 %> widget-list"><%- column[1] %></div>
+      <div class="column col-md-<%- size[2] || 4 %> widget-list"><%- column[2] %></div>
+      <div class="column col-md-<%- size[3] || 4 %> widget-list"><%- column.slice(3).join(' ') %></div>
+    </div>
+</div>
+
+<div class="cols3">
+  <div class="col">1</div>
+  <div class="col">2</div>
+  <div class="col">3</div>
+</div>
+

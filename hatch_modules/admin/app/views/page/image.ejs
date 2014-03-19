@@ -1,0 +1,243 @@
+<div class="modal-dialog" id="modal-image" style="">
+    <div class="modal-content">
+        <div class="modal-header">
+            <a class="close" data-dismiss="modal">×</a>
+            <h3><%- __('Insert image') %></h3>
+        </div>
+        <div class="modal-body">
+
+            <div id="modal-image-tabs">
+                <ul class="nav nav-tabs" id="media-tabs">
+                    <li class="active"><a href="#upload-media" data-toggle="tab"><%- __('From computer') %></a></li>
+                    <li><a href="#from-internet" data-toggle="tab"><%- __('From the internet') %></a></li>
+                    <li><a href="#media-library" data-toggle="tab"><%- __('From media library') %></a></li>
+                </ul>
+
+                <br>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="upload-media">
+
+                        <div class="upload-area">
+                            <div class="instructions" id="upload-drop">
+                                <button class="btn btn-primary" id="modal-upload-button" type="button"><i class="icon-picture"></i> Select file to upload</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane" id="from-internet">
+
+                        <form id="url-form">
+
+                            <div class="form-group">
+                                <label class="control-label" for="content-url">
+                                    <%- __('Enter a URL') %>
+                                </label>
+                                <div class="controls">
+                                    <div class="input-group">
+                                        <input id="content-url" class="form-control" name="search" type="text" placeholder="http://..." />
+                                        <span class="input-group-btn">
+                                            <button class="btn" type="submit" id="modal-image-addbyurl"><%- __('Add media') %></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <!--
+                        <form id="image-search-form">
+                            <div class="form-group">
+                                <label class="control-label" for="content-search">
+                                    <%- __('Or search for images on the internet') %>
+                                </label>
+                                <div class="controls">
+                                    <div class="input-group">
+                                        <input id="content-search" class="form-control" name="search" type="text" placeholder="<%- __('Enter a keyword...') %>" />
+                                        <span class="input-group-btn">
+                                            <button class="btn" type="submit" id="modal-image-search"><%- __('Search') %></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="search-results" style="display : none;">
+
+                                <hr/>
+
+                                <ul class="thumbnails">
+
+                                </ul>
+
+                            </div>
+
+                        </form>
+                        -->
+                    </div>
+                    <div class="tab-pane" id="media-library">
+
+                        <% if(images.length == 0) { %>
+                            <p>
+                                <%- __('Previously uploaded images will show here') %>
+                            </p>
+                        <% } else { %>
+                            <p>
+                                <%- __('Click on a previously uploaded image to insert') %>
+                            </p>
+
+                            <hr/>
+
+                            <div class="thumbnails clearfix">
+                                <% images.forEach(function(image) { %>
+                                    <div class="col-md-3">
+                                        <a href="#" class="thumbnail" data-url="<%- image.url %>">
+                                            <img src="<%- image.url %>" alt="" />
+                                        </a>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        <% } %>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-image-details" style="display: none;">
+                <form>
+                    <input type="hidden" name="url" id="modal-image-url" />
+                    <input type="hidden" name="width" id="modal-image-width" />
+                    <input type="hidden" name="height" id="modal-image-height" />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="">
+                                <img src="http://placehold.it/320x240" id="modal-image-preview" style="max-width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="url-form-group">
+                                <label class="control-label" for="modal-image-alt">
+                                    Title
+                                </label>
+                                <div class="controls">
+                                    <input name="alt" id="modal-image-alt" type="text" placeholder="Enter a description..." class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label" for="modal-image-align">
+                                    <%- __('Alignment') %>
+                                </label>
+                                <div class="controls">
+                                    <select id="modal-image-align" class="form-control">
+                                        <option value=""><%- __('Default') %></option>
+                                        <option value="left"><%- __('Left') %></option>
+                                        <option value="right"><%- __('Right') %></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <div class="btn-toolbar pull-left" style="margin : 0;">
+                <div class="btn-group">
+                    <button class="btn" type="button" id="modal-image-undo" style="display : none;"><i class="icon-pencil"></i> <%- __('Select a different image') %></button>
+                </div>
+            </div>
+            <div class="btn-toolbar pull-right" style="margin : 0;">
+                <div class="btn-group">
+                    <button class="btn btn-primary" type="button" id="insert-image-button" style="display : none;"><%- __('Insert image') %></button>
+                </div>
+                <div class="btn-group">
+                    <a class="btn" data-dismiss="modal"><%- __('Cancel') %></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    //setup the file uploader
+    $('#modal-upload-button').on('click', function () {
+        window.hatch.upload.upload({}, function (err, data) {
+            showImageDetails(data.media.url);
+        });
+    });
+
+    //bind button events
+    $('#insert-image-button').on("click", function() {
+        //insert the image html
+        var style = "";
+        var align = $('#modal-image-align').val();
+        if(align == "left") style = "float: left; margin : 0 10px 10px 0;";
+        else if(align == "right") style = "float: right; margin 0 0 10px 10px;";
+
+        var img = '<img src="' + $('#modal-image-url').val() + '" alt="' + $('#modal-image-alt').val() + '" style="' + style + '" />';
+        window.redactor.data('redactor').restoreSelection();
+        window.redactor.insertHtml(img);
+
+        //hide this modal
+        $('#redactor-modal').modal('hide');
+    });
+
+    //bind insert by url form
+    $('#url-form').on("submit", function() {
+        showImageDetails($('#content-url').val());
+
+        return false;
+    });
+
+    //bind search images form
+    $('#image-search-form').on("submit", function() {
+        $.ajax(pathTo('admin/page/imagesearch'), {
+            type: 'POST',
+            data: {
+                query: $('#image-search-form input').val()
+            },
+            success: function(data) {
+                $('#search-results').show();
+                var ul = $('#search-results ul');
+                ul.empty();
+
+                data.forEach(function(image) {
+                    ul.append('<li class="span1"><a href="#" class="thumbnail" data-url="' + image.url + '"><img src="' + image.url + '" /></a></li>')
+                });
+            }
+        });
+
+        return false;
+    });
+
+    //bind clicking images in library or search results
+    $('#media-library a, #search-results a').on("click", function() {
+        var url = $(this).data("url");
+        showImageDetails(url);
+
+        return false;
+    });
+
+    //bind undo button
+    $("#modal-image-undo").on("click", function() {
+        $('#modal-image-tabs').show();
+        $('#modal-image-details').hide();
+        $('#modal-image-undo').hide();
+        $('#insert-image-button').hide();
+    });
+
+    //shows the image details and hides the image selection tools
+    function showImageDetails(url) {
+        $('#modal-image-tabs').hide();
+        $('#modal-image-details').show();
+        $('#modal-image-undo').show();
+        $('#insert-image-button').show();
+
+        $('#modal-image-preview').attr('src', url);
+        $('#modal-image-url').val(url);
+    }
+
+</script>

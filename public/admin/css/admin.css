@@ -1,0 +1,281 @@
+.form-slim hr
+{
+    max-width: 708px ! important;
+}
+
+.form-slim .form-group
+{
+    max-width: 708px;
+}
+
+.form-slim .redactor_box
+{
+    max-width: 708px ! important;
+}
+
+.chzn-container-multi .chzn-choices 
+{
+    box-shadow: none;
+    border-color: #e8e8e8;
+    padding-bottom: 8px;
+}
+
+.chzn-container-multi .chzn-choices .search-choice
+{
+    margin: 8px 0 0 8px;
+}
+
+.brand, .brand:hover
+{
+    font-family: 'Open Sans';
+    color: #fff;
+    font-size: 28px;
+    line-height: 58px;
+    margin-left: 18px;
+}
+
+.brand img
+{
+    margin: -9px 4px 0 0;
+    height: 32px;
+}
+
+.brand small
+{
+    font-size: 18px;
+}
+
+.navbar.header
+{
+    position: absolute;
+}
+
+.header .chat-toggler
+{
+    min-width: 0;
+}
+
+.header .chat-toggler .profile-pic
+{
+    margin-left: 15px;
+}
+
+.header .search-form
+{
+    margin-left: -5px;
+}
+
+table td .checkbox
+{
+    margin-top : -4px;
+}
+
+.pagination
+{
+    margin-top: 0;
+}
+
+.pagination .next a
+{
+    margin-left: 0 ! important;
+}
+
+.page-content th.header
+{
+    display: table-cell;
+    position: relative;
+    padding: 12px ! important;
+    width: auto;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li > a
+{
+    padding-left: 61px ! important;
+    padding-right: 30px;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li.active > a
+{
+    background: transparent ! important;
+    font-weight: bold;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li.separator
+{
+    border-bottom: solid 2px #1b1e24;
+    margin: 5px 0px 5px 0px;
+    padding: 4px 0 0px 0;
+}
+
+.page-sidebar > ul > li > ul.sub-menu > li.sub-header
+{
+    padding-left: 61px;
+    padding-top: 5px;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.dataTables_filter
+{
+    margin-bottom: 15px;
+}
+
+.dataTables_processing
+{
+    display: none ! important;
+}
+
+.filter-tabs
+{
+    float: none;
+    position: absolute;
+    right: 30px;
+    margin-top: -45px;
+    border-radius: 3px;
+}
+
+.filter-tabs .active a
+{
+    box-shadow: none ! important;
+}
+
+/* PAGES TABLE */
+#pages-table td:first-child
+{
+    padding: 8px 0 0 0 ! important;
+    vertical-align: middle;
+}
+
+.icon-home, .icon-move, .icon-move:hover, .icon-home:hover
+{
+    width: 36px;
+    height: 36px;
+    padding: 11px;
+    text-align: center;
+    margin: -8px 8px 0 0;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    background-color: #f8f8f8 ! important;   
+}
+
+.icon-move
+{
+    cursor: move;
+}
+
+#pages-table .level1 td:nth-child(-n+2) {
+    padding-left: 36px ! important;
+}
+
+#pages-table .level2 td:nth-child(-n+2) {
+    padding-left: 72px ! important;
+}
+
+#pages-table .level3 td:nth-child(-n+2) {
+    padding-left: 108px ! important;
+}
+
+#pages-table .level4 td:nth-child(-n+2) {
+    padding-left: 140px ! important;
+}
+
+.new-page td
+{
+    background: #f8f8f8;
+    border-top: none ! important;
+}
+
+.placeholder td
+{
+    padding: 1px ! important;
+}
+
+.placeholder div
+{
+    background: #eee;
+    height: 36px;
+    margin-top: -8px;
+    border: solid 1px #fff;
+    border-width: 1px 0 1px 0;
+}
+
+.form-new-page
+{
+    width: 100%;
+}
+
+.form-new-page input, .form-new-page input:active
+{
+    border: none;
+    box-shadow: none;
+    background-color: #fff ! important;
+    width: 400px;
+    margin: -8px 0 0 0;
+    padding: 0;
+}
+
+.form-new-page .btn-link
+{
+    margin-right: 27px;
+    font-size: 13px;
+    color: #0d638f;
+}
+
+.ui-sortable-helper td
+{
+    border: none ! important;
+    min-width: 100px;
+}
+
+/* TAGS EDITING */
+#filter
+{
+    position : relative;
+    width : auto;
+    height: 100px;
+    font-family : 'Courier New', Courier, fixed-width;
+    padding: 0px;
+}
+
+.filter-cover
+{
+    background: #ddd url(/img/stripes.png);
+    height: 120px;
+    margin: -121px 1px 0;
+    opacity: .85;
+}
+
+.filter
+{
+    display : none;
+}
+
+.filter.enabled
+{
+    display: block;
+}
+
+.filter.enabled .filter-cover
+{
+    display : none;
+}
+
+.editor
+{
+    padding: 10px;
+    border: solid 1px #ddd;
+    overflow: hidden;
+    opacity : .99;
+    margin-bottom: 10px;
+}
+
+.filter.enabled .editor
+{
+    opacity : 1;
+}
+
+ul.unstyled ul
+{
+    list-style: none;
+}

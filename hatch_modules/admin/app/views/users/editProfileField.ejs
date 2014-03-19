@@ -1,0 +1,85 @@
+<div class="page-title">
+    <h3><%- t('users.headers.editProfileField') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- formTagBegin({ action: pathTo.saveProfileField(), remote: true, id: 'profile-field-form', method: 'POST', class: 'form-slim' }) %>
+                    <input type="hidden" name="id" value="<%- field.id %>" />
+                    <input type="hidden" name="order" value="<%- field.order %>" />
+
+                    <div class="form-group">
+                        <label class="control-label" for="title"><%- t('users.labels.fieldName') %></label>
+                        <input class="form-control" type="text" id="title" name="title" value="<%- field.title %>"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="fieldType"><%- t('users.labels.fieldType') %></label>
+                        <select id="fieldType" name="type" class="form-control">
+                            <option value="text" <%- field.type == 'text' ? 'selected="selected"':'' %>><%- t('users.labels.text') %></option>
+                            <option value="textarea" <%- field.type == 'textarea' ? 'selected="selected"':'' %>><%- t('users.labels.textarea') %></option>
+                            <option value="name" <%- field.type == 'name' ? 'selected="selected"':'' %>><%- t('users.labels.name') %></option>
+                            <option value="radio-list" <%- field.type == 'radio-list' ? 'selected="selected"':'' %>><%- t('users.labels.radioList') %></option>
+                            <option value="check-list" <%- field.type == 'check-list' ? 'selected="selected"':'' %>><%- t('users.labels.checkList') %></option>
+                            <option value="select-list" <%- field.type == 'select-list' ? 'selected="selected"':'' %>><%-t('users.labels.selectList') %></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="optionsControl" <%- (field.type || '').indexOf('-list') > -1 ? '':'style="display: none"' %>>
+                        <label class="control-label" for="options"><%- t('users.labels.options') %></label>
+                        <select id="options" name="options[]" multiple="multiple" class="form-control" data-placeholder="Enter some list options" style="width : 300px;">
+                            <% (field.options || []).forEach(function(option) { %>
+                                <option value="<%- option %>" selected="selected">
+                                    <%- option %>
+                                </option>
+                            <% }) %>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="">
+                            <input type="checkbox" class="" value="true" name="mandatory" <%- field.mandatory ? ' checked="checked"':'' %> />
+                            <%- t('users.labels.mandatory') %>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="privacy"><%- t('users.labels.visibility') %></label>
+                        <select id="privacy" name="privacy" class="form-control">
+                            <option value="public"<%- field.privacy == 'public' ? ' selected="selected"':'' %>><%- t('common.public') %></option>
+                            <option value="members-only"<%- field.privacy == 'members-only' ? ' selected="selected"':'' %>><%- t('common.membersOnly') %></option>
+                            <option value="private"<%- field.privacy == 'private' ? ' selected="selected"':'' %>><%- t('common.private') %></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="description"><%- t('users.labels.registrationDescription') %></label>
+                        <textarea id="description" class="span6 richtext" rows="6" name="description"><%- field.description %></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="helpText"><%- t('users.labels.helpText') %></label>
+                        <input type="text" id="helpText" name="helpText" class="form-control" value="<%- field.helpText %>"/>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%- t('users.actions.save') %></button>
+                        <a href="<%- pathTo.profileFields() %>" class="btn"><%- t('common.cancel') %></a>
+                    </div>
+                <%- formTagEnd() %>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#fieldType').bind("change", function() {
+            if(this.value.indexOf("-list") > -1) $("#optionsControl").show();
+            else $("#optionsControl").hide();
+        });
+    });
+</script>

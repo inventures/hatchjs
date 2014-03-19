@@ -1,0 +1,36 @@
+<div class="page-title">
+    <h3><%- t('users.headers.inviteUsers') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- formTagBegin({ action: pathTo.sendInvites, remote: true, method: 'post', id: 'invite-form', class: 'form-slim' }) %>
+                    <div class="form-group">
+                        <label class="form-label"><%- t('users.help.inviteUsers') %></label>
+                        <select id="usernames" name="usernames[]" multiple="multiple" class="col-md-12 chzn-select-create" data-placeholder=" ">
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="subject"><%- t('users.labels.inviteSubject') %></label>
+                        <input type="text" id="subject" name="subject" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="body"><%- t('users.labels.inviteBody') %></label>
+                        <div class="controls">
+                            <textarea id="body" name="body" class="input-xxlarge span6 richtext" rows="10"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%- t('users.actions.sendInvites') %></button>
+                        <a href="<%- pathTo.community() %>" class="btn"><%- t('common.cancel') %></a>
+                    </div>
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

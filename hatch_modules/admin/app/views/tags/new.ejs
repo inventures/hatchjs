@@ -1,0 +1,22 @@
+<div class="page-title">
+    <h3><%= t('tags.headers.add') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- formTagBegin({action: pathTo.createTag(sectionName), remote: true, method: 'POST', id: 'tag-form', class: 'form-slim' }) %>
+                    <input type="hidden" name="id" value="<%- tag && tag.id %>" />
+
+                    <% include _form %>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><%= t('tags.actions.add') %></button>
+                        <a href="<%- pathTo.tags(type) %>" class="btn"><%= t('common.cancel') %></a>
+                    </div>
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

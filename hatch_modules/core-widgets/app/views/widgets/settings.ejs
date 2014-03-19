@@ -1,0 +1,81 @@
+<div class="modal-dialog wide" id="modal-settings">
+	<div class="modal-content">
+		<form action="<%- widgetCoreAction('configure') %>" method="POST" data-remote="true" data-widget-action="render:<%- widget.id %>" class="form-horizontal widget-settings-form">
+			<input type="hidden" name="contrastMode" value="<%- widget.settings.contrastMode %>">
+			
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">×</a>
+				<h4 class="modal-title"><%- __('Edit widget settings') %></h4>
+			</div>
+
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-8 widget-title">
+						<div class="form-group">
+							<label class="control-label col-md-2" for="widget-title"><%- __('Title') %></label>
+							<div class="col-md-10">
+								<input type="text" class="form-control" value="<%- widget.settings.title %>" id="widget-title" name="title" placeholder="">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 pull-right">
+						<div class="col-md-7 widget-visibility">
+							<div class="form-group">
+								<input type="hidden" id="visibility" name="visibility" value='<%- visibility.selected && visibility.selected.value %>' />
+
+								<div id="widget-visibility" class="dropdown">
+									<button class="btn btn-<%- visibility.selected && visibility.selected.class %>" data-toggle="dropdown" tabindex="-1"><%- visibility.selected && visibility.selected.name %> <span class="caret"></span></button>
+									
+									<ul class="dropdown-menu pull-right">
+										<% visibility.forEach(function (v) { %>
+											<li>
+												<a href="#<%- v.value %>" data-value='<%- JSON.stringify(v) %>' rel="widget-visibility">
+													<i class="icon-<%- v.icon %>"></i>
+													<%- v.name %>
+													<br/>
+													<small><%- v.description %></small>
+												</a>
+											</li>
+										<% }); %>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5 widget-privacy">
+							<div class="form-group">
+								<input type="hidden" id="privacy" name="privacy" value='<%- privacy.selected && privacy.selected.value %>' />
+
+								<div id="widget-privacy" class="dropdown">
+									<button class="btn btn-<%- privacy.selected && privacy.selected.class %>" data-toggle="dropdown" tabindex="-1"><%- privacy.selected && privacy.selected.name %> <span class="caret"></span></button>
+									
+									<ul class="dropdown-menu pull-right">
+										<% privacy.forEach(function (p) { %>
+											<li>
+												<a href="#<%- p.value %>" data-value='<%- JSON.stringify(p) %>' rel="widget-privacy">
+													<i class="icon-<%- p.icon %>"></i>
+													<%- p.name %>
+													<br/>
+													<small><%- p.description %></small>
+												</a>
+											</li>
+										<% }); %>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<br>
+
+				<%- buildForm(widgetCore.info.settings, widget.settings) %>
+
+				<div id="modal-image-tabs"></div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-primary" type="submit"><%- __('Save settings') %></button>
+				<a class="btn" data-dismiss="modal"><%- __('Cancel') %></a>
+			</div>
+		</form>
+	</div>
+</div>

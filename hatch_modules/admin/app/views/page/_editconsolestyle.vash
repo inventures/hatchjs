@@ -1,0 +1,418 @@
+<div class="accordion-inner">
+    <ul class="nav nav-tabs" id="styleEditorTabs">
+        <li class="active">
+            <a href="#themes" data-toggle="tab">@model.t('editconsole.headers.themes')</a>
+        </li>
+        <li>
+            <a href="#fonts" data-toggle="tab">@model.t('editconsole.headers.fonts')</a>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">@model.t('editconsole.headers.style') <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="hidden"><a href="#style-properties" data-toggle="tab" id="properties-tab"><i class="fa fa-list-ol"></i> @model.t('editconsole.actions.properties')</a></li>
+                <li class="divider hidden"></li>
+                <li class=""><a href="#style-select" data-toggle="tab" id="styleSelectTab"><i class="fa fa-pencil-square-o"></i> @model.t('editconsole.actions.select')</a></li>
+                <li class="dropdown-header pull-left hidden" id="styleSimilarElements">
+                  @model.t('editconsole.actions.similarElements')
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">CSS <b class="caret"></b></a>
+            <ul class="dropdown-menu pull-right">
+                <li><a href="#css-variables" data-toggle="tab"><i class="fa fa-cogs"></i> @model.t('editconsole.headers.variables')</a></li>
+                <li><a href="#css-bootswatch" data-toggle="tab"><i class="fa fa-bold"></i> @model.t('editconsole.headers.bootswatch')</a></li>
+                <li><a href="#css-custom" data-toggle="tab"><i class="fa fa-star"></i> @model.t('editconsole.headers.custom')</a></li>
+            </ul>
+        </li>
+    </ul>
+    
+    <div id="style-selected-label" style="display : none;">
+        <div class="pull-left"><a href="#" id="styleSelectElement" class="btn btn-xs" data-toggle="button"><i class="fa fa-pencil-square-o"></i></a></div>
+        <!--<div class="pull-right"><a href="#" id="styleAdvancedToggle" class="btn btn-xs" data-toggle="button"><i class="fa fa-cogs"></i></a></div>-->
+        <div class="alert">
+            <a href="#" id="styleUpElement"><i class="fa fa-chevron-up"></i></a> <span id="style-selected-element" class="one-line">@model.t('editconsole.help.clickElement')</span>
+            {&nbsp;...&nbsp;}
+        </div>
+
+    </div>
+    
+    <form class="form-horizontal" id="style-editor-form" onsubmit="return false;">
+        
+        <div class="tab-content">
+            <div class="tab-pane" id="style-properties">
+                <div id="basic-styles">
+                    <div class="control-group">
+                        <label class="control-label" for="style-font-family">
+                            Font family
+                        </label>
+                        <div class="controls">
+                            <select id="style-font-family" class="font-list">
+                                <option value="">-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="style-font-size">
+                            Font size
+                        </label>
+                        <div class="controls">
+                            <div class="pull-right range-caption" id="style-font-size-label">15px</div>
+                            <input id="style-font-size" type="range" class="range" min="1" max="100" value="15" style="width : 90px;" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="style-color">
+                            Colour
+                        </label>
+                        <div class="controls">
+                            <div class="input-append color" data-color="" data-color-format="hex" id="cp-color">
+                        		<input id="style-color" type="text" class="input-small" value="" /><span class="add-on"><i style="background-color: transparent;" id="cp-style-color"></i></span>
+                			</div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            Text style
+                        </label>
+                        <div class="controls">
+                            <div class="btn-group" data-toggle="buttons-checkbox" id="style-text-style">
+                                <a class="btn" href="#" id="style-font-weight_bold"><i class="fa fa-bold"></i></a>
+                                <a class="btn" href="#" id="style-font-style_italic"><i class="fa fa-italic"></i></a>
+                                <a class="btn" href="#" id="style-text-decoration_underline"><i class="fa fa-underline"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <hr/>
+
+                    <div class="control-group">
+                        <label class="control-label" for="style-background-color">
+                            BG colour
+                        </label>
+                        <div class="controls">
+                            <div class="input-append color" data-color="#ffffff" data-color-format="hex" id="cp-background-color">
+                        		<input id="style-background-color" type="text" class="input-small" value="" /><span class="add-on"><i style="background-color: transparent; " id="cp-style-background-color"></i></span>
+                			</div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            BG image
+                        </label>
+                        <div class="controls">
+                            <button class="btn" type="button" id="style-background-image_upload"><i class="fa fa-picture"></i> Upload</button>
+                            <button class="btn" id="style-background-image_none"><i class="fa fa-remove"></i></button>
+                            
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="style-background-repeat">
+                            BG style
+                        </label>
+                        <div class="controls">
+                            <select id="style-background-repeat" class="half">
+                                <option value="">-</option>
+                                <option value="repeat">Repeat</option>
+                                <option value="repeat-x">Repeat-x</option>
+                                <option value="repeat-y">Repeat-y</option>
+                                <option value="no-repeat">No-Repeat</option>
+                            </select>
+
+                            <select id="style-background-position" class="half">
+                                <option value="">-</option>
+                                <option value="center">center</option>
+                                <option value="left top">left top</option>
+                                <option value="center top">center top</option>
+                                <option value="right top">right top</option>
+                                <option value="left center">left center</option>
+                                <option value="center center">center center</option>
+                                <option value="right center">right center</option>
+                                <option value="left bottom">left bottom</option>
+                                <option value="center bottom">center bottom</option>
+                                <option value="right bottom">right bottom</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    <hr/>
+
+                    <div id="spacingBorderStyles" style="">
+        				<!-- margin -->
+        				<table class="margin">
+        					<tbody>
+        						<tr>
+        							<td>
+        								<!--<span class="info margin" id="style-margin-">Margin</span><div class="inputDragHandle " style="position: relative; "></div>-->
+        							</td>
+        							<td>
+        								<div class="center">
+        									<input class="tiny margin" id="style-margin-top" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        								</div>
+        							</td>
+        							<td>
+        							</td>
+        						</tr>
+        						<tr>
+        							<td>
+        								<input class="tiny margin" id="style-margin-left" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        							</td>
+        							<td>
+        								<!-- border -->
+        								<table class="border">
+        									<tbody>
+        										<tr>
+        											<td>
+        												<!--<span class="info border" id="style-border-">Border</span><div class="inputDragHandle " style="position: relative; "></div>-->
+        											</td>
+        											<td>
+        												<div class="center">
+        													<input class="tiny border" id="style-border-top-width" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        												</div>
+        											</td>
+        											<td>
+        											</td>
+        										</tr>
+        										<tr>
+        											<td>
+        												<input class="tiny border" id="style-border-left-width" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        											</td>
+        											<td>
+        												<!-- padding -->
+        												<table class="padding">
+        													<tbody>
+        														<tr>
+        															<td>
+        																<!--<span class="info padding" id="style-padding-">Padding</span><div class="inputDragHandle " style="position: relative; "></div>-->
+        															</td>
+        															<td>
+        																<div class="center">
+        																	<input class="tiny padding" id="style-padding-top" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        																</div>
+        															</td>
+        															<td>
+        															</td>
+        														</tr>
+        														<tr>
+        															<td>
+        																<input class="tiny padding" id="style-padding-left" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        															</td>
+        															<td>
+        																<!-- content -->
+        																<div class="subject">
+        																	Content
+        																</div>
+        															</td>
+        															<td>
+        																<input class="tiny padding" id="style-padding-right" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        															</td>
+        														</tr>
+        														<tr>
+        															<td>
+        															</td>
+        															<td>
+        																<div class="center">
+        																	<input class="tiny padding" id="style-padding-bottom" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        																</div>
+        															</td>
+        															<td>
+        															</td>
+        														</tr>
+        													</tbody>
+        												</table>
+        											</td>
+        											<td>
+        												<input class="tiny border" id="style-border-right-width" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        											</td>
+        										</tr>
+        										<tr>
+        											<td>
+        											</td>
+        											<td>
+        												<div class="center">
+        													<input class="tiny border" id="style-border-bottom-width" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        												</div>
+        											</td>
+        											<td>
+        											</td>
+        										</tr>
+        									</tbody>
+        								</table>	
+        							</td>
+        							<td>
+        								<input class="tiny margin" id="style-margin-right" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        							</td>
+        						</tr>
+        						<tr>
+        							<td>
+        							</td>
+        							<td>
+        								<div class="center">
+        									<input class="tiny margin" id="style-margin-bottom" value="0"><div class="inputDragHandle " style="position: relative; "></div>
+        								</div>
+        							</td>
+        							<td>
+        							</td>
+        						</tr>
+        					</tbody>
+        				</table>
+        
+        				<div class="control-group">
+                            <label class="control-label" for="style-border-style">
+                                Border style
+                            </label>
+                            <div class="controls">
+                                <select id="style-border-style">
+            						<option value="none">-</option>
+            						<option value="solid">solid</option>
+            						<option value="dashed">dashed</option>
+            						<option value="dotted">dotted</option>
+            						<option value="inset">inset</option>
+            						<option value="outset">outset</option>
+            					</select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="style-border-color">
+                                Colour
+                            </label>
+                            <div class="controls">
+                                <div class="input-append color" data-color="" data-color-format="hex" id="cp-border-color">
+                                    <input id="style-border-color" type="text" class="input-small" value="" /><span class="add-on"><i style="background-color: rgb(255, 146, 180); " id="cp-style-border-color"></i></span>
+                                </div>
+                            </div>
+                        </div>
+        			</div>
+                </div>
+
+                <div id="advanced-styles">
+                    <div class="control-group">
+                        <select id="add-new-rule" class="chzn-select add-rule" data-placeholder="Add CSS rule">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div id="style-advanced-properties">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="style-select">
+                <p>
+                    Click on the element on the page you wish to edit style rules for or select from the list below:
+                </p>
+                <div class="control-group">
+                    <select id="css-rule-list" class="chzn-select">
+                        <option value="">Pick a selector</option>
+                        <option value="">---------------</option>
+                    </select>
+                </div>
+            </div>
+            <div class="tab-pane active" id="themes">
+                <div id="theme-frame">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Themes
+                        </label>
+                        <select id="theme-select">
+                            <option value="">Select theme</option>
+                            @model.themes.forEach(function(theme) {
+                                @{ if(theme.hidden) return; }
+                                <option value="@theme.name" data-thumbnail="@theme.thumbnail">@theme.title</option>
+                            })
+                        </select>
+                    </div>
+
+                    <img src="http://bootswatch.com/cerulean/thumbnail.png" id="theme-preview" style="display: none;" />
+
+                    <div class="form-actions hidden" id="theme-save-buttons">
+                        <button type="button" class="btn btn-primary" id="theme-save-button">Apply theme</button>
+                        <button class="btn" id="theme-undo-button">Undo</button>
+                    </div>
+                </div>
+                <div class="hidden" id="theme-changes-pending">
+                    <p>Please save or undo changes before changing your theme.</p>
+                </div>
+            </div>
+            <div class="tab-pane" id="fonts">
+                <div class="form-group no-space">
+                    <label class="control-label" for="header-font-family">
+                        Header font
+                    </label>
+                    <select id="header-font-family" class="font-list">
+                        <option value="">-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="header-font-size">
+                        Header size
+                    </label>
+                    <input type="number" class="number" min="1" max="100" value="15" id="header-font-size" />
+                </div>
+                <div class="form-group no-space">
+                    <label class="control-label" for="title-font-family">
+                        Title font
+                    </label>
+                    <select id="title-font-family" class="font-list">
+                        <option value="">-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="title-font-size">
+                        Title size
+                    </label>
+                    <input type="number" class="number" min="1" max="100" value="15" id="title-font-size" />
+                </div>
+                <div class="form-group no-space">
+                    <label class="control-label" for="body-font-family">
+                        Body font
+                    </label>
+                    <select id="body-font-family" class="font-list">
+                        <option value="">-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="body-font-size">
+                        Body size
+                    </label>
+                    <input type="number" class="number" min="1" max="50" value="15" id="body-font-size" />
+                </div>
+            </div>
+            <div class="tab-pane css-editor-frame" id="css-variables">
+                <textarea class="css-editor" id="style-css-textarea-variables" wrap="off"></textarea>
+            </div>
+            <div class="tab-pane css-editor-frame" id="css-bootswatch">
+                <textarea class="css-editor" id="style-css-textarea-bootswatch" wrap="off"></textarea>
+            </div>
+            <div class="tab-pane css-editor-frame" id="css-custom">
+                <textarea class="css-editor" id="style-css-textarea-custom" wrap="off"></textarea>
+            </div>
+        </div>
+
+        <div class="hidden" id="css-editor-changes-pending">
+            <p>
+                @model.t('editconsole.help.changesPending')
+            </p>
+        </div>
+
+        <div class="form-actions hidden" id="css-save-buttons">
+            <!-- <button type="submit" class="btn btn-success" id="style-preview-css-button">Preview</button> -->
+            <button type="submit" class="btn btn-primary" id="style-save-css-button">
+                @model.t('editconsole.actions.save')
+            </button>
+            <button class="btn" id="style-undo-css-button">
+                @model.t('common.undo')
+            </button>
+        </div>
+    
+        <div class="form-actions hidden" id="style-save-buttons">
+            <button type="button" class="btn btn-primary" id="style-save-button">
+                @model.t('editconsole.actions.save')
+            </button>
+            <button class="btn" id="style-undo-button">
+                @model.t('common.undo')
+            </button>
+        </div>
+    
+    </form>
+</div>

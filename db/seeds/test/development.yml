@@ -1,0 +1,227 @@
+- Group:
+    name: 'Default group'
+    id: 1
+    headerHtml: '<h1>Default Group</h1><p>Welcome to my group</p>'
+    footerHtml: '<p>Built on Hatch</p>'
+    homepage:
+      id: 1
+      url: 'localhost:3000/'
+    pagesCache:
+      -
+        id: 1
+        title: 'Home'
+        url: 'localhost:3000/'
+        type: 'page'
+        order: 0
+        level: 0
+      -
+        id: 2
+        title: 'About us'
+        url: 'localhost:3000/about'
+        type: 'page'
+        order: 1
+        level: 1
+        parentId: 1
+    modules:
+      -
+        name: user
+        contract:
+          google: true,
+          local: true
+      -
+        name: admin
+        contract:
+          admin: 'rpm1602@gmail.com'
+      -
+        name: core-widgets
+      -
+        name: core
+      -
+        name: twitter
+        contract:
+          apiKey: 'vblXx7Mn2ZQm2DUhMxptOg'
+          secret: 'ekDf5SBXtrwxXLVHMtKIgRyuPeD1o1RPhp4rFq1do'
+      -
+        name: facebook
+        contract:
+          apiKey: '279981265420276'
+          secret: 'bfcfeca20bd2bf141d75c9f58cff99dc'
+      -
+        name: linkedin
+        contract:
+          apiKey: '9es3u5as7h5e'
+          secret: 'NBNdiYPXyzoq6TTL'
+      -
+        name: google-oauth
+        contract:
+          apiKey: '278409062275.apps.googleusercontent.com'
+          secret: 'wGlpbU2TXW-5p7gl7Utudamn'
+      -
+        name: stylesheet
+      -
+        name: upload
+      -
+        name: content
+
+- Content:
+    id: 1
+    url: 'localhost:3000/lorem-ipsum-blogbost-permalink'
+    groupId: 1
+    title: 'Lorem ipsum'
+    type: blogpost
+    score: 3.5
+    text: '
+      <h2>Lorem ipsum dolor</h2>
+      <p>Proin ut quam eros. Donec sed lobortis diam. Nulla nec odio lacus.
+      Quisque porttitor egestas dolor in placerat. Nunc vehicula dapibus ipsum.
+      Duis venenatis risus non nunc fermentum dapibus. Morbi lorem ante,
+      malesuada in mollis nec, auctor nec massa. Aenean tempus dui eget felis
+      blandit at fringilla urna ultrices. Suspendisse feugiat, ante et viverra
+      lacinia, lectus sem lobortis dui, ultricies consectetur leo mauris at
+      tortor. Nunc et tortor sit amet orci consequat semper. Nulla non
+      fringilla diam.  </p>
+
+      <h2>Proin ornare ligula</h2>
+      <p>Integer elementum massa at nulla placerat varius. Suspendisse in
+      libero risus, in interdum massa. Vestibulum ac leo vitae metus faucibus
+      gravida ac in neque. Nullam est eros, suscipit sed dictum quis, accumsan
+      a ligula. In sit amet justo lectus. Etiam feugiat dolor ac elit suscipit
+      in elementum orci fringilla. Aliquam in felis eros. Praesent hendrerit
+      lectus sit amet turpis tempus hendrerit. Donec laoreet volutpat molestie.
+      Praesent tempus dictum nibh ac ullamcorper. Sed eu consequat nisi.
+      Quisque ligula metus, tristique eget euismod at, ullamcorper et nibh.
+      Duis ultricies quam egestas nibh mollis in ultrices turpis pharetra.
+      Vivamus et volutpat mi. Donec nec est eget dolor laoreet iaculis a sit
+      amet diam.  </p>
+
+      <h2>Proin suscipit luctus</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac
+      magna non augue porttitor scelerisque ac id diam. Mauris elit velit,
+      lobortis sed interdum at, vestibulum vitae libero. Lorem ipsum dolor sit
+      amet, consectetur adipiscing elit. Quisque iaculis ligula ut ipsum mattis
+      viverra. Nulla a libero metus. Integer gravida tempor metus eget
+      condimentum. Integer eget iaculis tortor. Nunc sed ligula sed augue
+      rutrum ultrices eget nec odio. Morbi rhoncus, sem laoreet tempus
+      pulvinar, leo diam varius nisi, sed accumsan ligula urna sed felis.
+      Mauris molestie augue sed nunc adipiscing et pharetra ligula suscipit. In
+      euismod lectus ac sapien fringilla ut eleifend lacus venenatis.  </p>
+    '
+
+- Content:
+    id: 2
+    url: 'localhost:3000/lorem-ipsum-blogbost-permalink2'
+    groupId: 1
+    title: 'Lorem ipsum 2'
+    type: blogpost
+    score: 3
+    text: '
+      <h2>Lorem ipsum dolor</h2>
+      <p>Proin ut quam eros. Donec sed lobortis diam. Nulla nec odio lacus.
+      Quisque porttitor egestas dolor in placerat. Nunc vehicula dapibus ipsum.
+      Duis venenatis risus non nunc fermentum dapibus. Morbi lorem ante,
+      malesuada in mollis nec, auctor nec massa. Aenean tempus dui eget felis
+      blandit at fringilla urna ultrices. Suspendisse feugiat, ante et viverra
+      lacinia, lectus sem lobortis dui, ultricies consectetur leo mauris at
+      tortor. Nunc et tortor sit amet orci consequat semper. Nulla non
+      fringilla diam.  </p>
+    '
+
+- Page:
+    id: 1
+    title: 'Home'
+    url: 'localhost:3000/'
+    type: 'page'
+    order: 0
+    groupId: 1
+    grid: '02-two-columns'
+    columns:
+      -
+        widgets:
+          - 1
+          - 2
+    widgets: 
+      -
+        id: 1
+        type: 'core-widgets/group-header'
+      -
+        id: 2
+        type: 'core-widgets/mainmenu'
+
+- Page:
+    id: 2
+    title: 'About us'
+    url: 'localhost:3000/about'
+    type: 'page'
+    order: 1
+    groupId: 1
+    parentId: 1
+    grid: '03-three-columns'
+    columns:
+      -
+        widgets:
+          - 1
+          - 2
+    widgets:
+      -
+        id: 1
+        type: 'core-widgets/group-header'
+      -
+        id: 2
+        type: 'core-widgets/mainmenu'
+
+- Group:
+    id: 2
+    name: 'Extranet'
+    homepage:
+      id: 3
+      url: 'localhost:3000/extranet'
+    pagesCache:
+      -
+        id: 3
+        title: 'Extranet home'
+        url: 'localhost:3000/extranet'
+        type: 'page'
+    modules:
+      -
+        name: 'admin'
+        contract:
+          admin: 'rpm1602@gmail.com'
+      -
+        name: 'stylesheet'
+      -
+        name: 'user'
+
+- Page:
+    id: 3
+    title: Extranet home
+    url: 'localhost:3000/extranet'
+    type: 'page'
+    groupId: 2
+    grid: '03-three-columns'
+    columns:
+      -
+        widgets:
+          - 1
+    widgets: 
+      -
+        id: 1
+        type: 'core-widgets/mainmenu'
+
+- User:
+    id: 101
+    username: user101
+    name: 'Test user 1'
+    password: 'secr3t'
+    email: 'user101@hatchplatform.com'
+    avatar: '/img/default-profile-pic.png'
+    membership:
+      -
+        groupId: 1
+        role: owner
+        joinedAt: "2012-09-07T19:25:41.073Z"
+        state: approved
+      -
+        groupId: 2
+        role: owner
+        joinedAt: "2012-09-07T19:25:41.073Z"
+        state: approved

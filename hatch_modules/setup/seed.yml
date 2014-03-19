@@ -1,0 +1,110 @@
+- Group:
+    name: 'Default group'
+    id: 1
+    headerHtml: '<h1>Default Group</h1><p>Welcome to my group</p>'
+    footerHtml: '<p>Built on Hatch</p>'
+    homepage:
+      id: 1
+      url: 'localhost:3000/'
+    pagesCache:
+      -
+        id: 1
+        title: 'Home'
+        url: 'localhost:3000/'
+        type: 'page'
+        order: 0
+        level: 0
+    pageUrls:
+      - 'localhost:3000'
+    modules:
+      -
+        name: user
+        contract:
+          google: true,
+          local: true
+      -
+        name: admin
+        contract:
+          admin: 'rpm1602@gmail.com'
+      -
+        name: core-widgets
+      -
+        name: core
+      -
+        name: twitter
+        contract:
+          apiKey: 'vblXx7Mn2ZQm2DUhMxptOg'
+          secret: 'ekDf5SBXtrwxXLVHMtKIgRyuPeD1o1RPhp4rFq1do'
+      -
+        name: facebook
+        contract:
+          apiKey: '279981265420276'
+          secret: 'bfcfeca20bd2bf141d75c9f58cff99dc'
+      -
+        name: linkedin
+        contract:
+          apiKey: '9es3u5as7h5e'
+          secret: 'NBNdiYPXyzoq6TTL'
+      -
+        name: google-oauth
+        contract:
+          apiKey: '278409062275.apps.googleusercontent.com'
+          secret: 'wGlpbU2TXW-5p7gl7Utudamn'
+      -
+        name: stylesheet
+      -
+        name: upload
+      -
+        name: content
+      -
+        name: api
+
+- Page:
+    id: 1
+    title: 'Home'
+    url: 'localhost:3000/'
+    type: 'page'
+    order: 0
+    groupId: 1
+    grid: '02-two-columns'
+    columns:
+      -
+        widgets:
+          - 1
+          - 2
+    widgets: 
+      -
+        id: 1
+        type: 'core-widgets/group-header'
+      -
+        id: 2
+        type: 'core-widgets/mainmenu'
+
+- User:
+    id: 1
+    username: user101
+    name: 'Test user 1'
+    password: 'secr3t'
+    email: 'user101@hatchplatform.com'
+    avatar: '/img/default-profile-pic.png'
+    type: 'administrator'
+    memberships:
+      -
+        groupId: 1
+        role: owner
+        joinedAt: "2000-01-01T00:00:01.000Z"
+        state: accepted
+- User:
+    id: 2
+    username: user102
+    name: 'Test user 2'
+    password: 'password'
+    email: 'user102@hatchjs.com'
+    avatar: '/img/default-profile-pic.png'
+
+- OAuthClient:
+    id: 1
+    name: demo client
+    apiKey: key
+    apiSecret: secret
+    redirectUri: http://localhost:3000

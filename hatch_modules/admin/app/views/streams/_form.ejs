@@ -1,0 +1,55 @@
+<div class="form-group">
+    <label class="form-label" for="title"><%= t('streams.labels.title') %></label>
+    <div class="controls">
+        <input type="text" class="form-control" id="title" name="title" value="<%- stream && stream.title %>">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="type"><%= t('streams.labels.source') %></label>
+    <div class="controls">
+        <select id="type" name="type" class="form-control">
+            <% Object.keys(importers).forEach(function(key) { var type = importers[key]; %>
+            <option value="<%- type.name %>"<%- stream.type == type.name ? ' selected="selected"':'' %>><%- type.description %></option>
+            <% }); %>
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="query"><%= t('streams.labels.query') %></label>
+    <div class="controls">
+        <input type="text" class="form-control" id="query" name="query" value="<%- stream && stream.query %>">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="tags">
+        <%= t('streams.labels.tags') %>
+    </label>
+    <div class="controls">
+        <select id="tags" name="tags[]" multiple="multiple" class="col-md-12 chzn-select-create" data-placeholder="<%= t('common.enterTags') %>">
+            <% (tags || []).forEach(function(tag) { %>
+            <option value="<%- tag.id %>" <%- _.find(stream.tags.items, function(t) { return t.id == tag.id }) ? ' selected="selected"':'' %>><%- tag.title %></option>
+            <% }) %>
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="form-label" for="interval"><%= t('streams.labels.interval') %></label>
+    <div class="controls">
+        <select id="type" name="interval" class="form-control">
+            <option value="60000"<%- stream.interval == 60000 ? 'selected="selected"':''%>><%= t('streams.labels.everyMinute') %></option>
+            <option value="300000"<%- stream.interval == 300000 ? 'selected="selected"':''%>><%= t('streams.labels.every5Minutes')  %></option>
+            <option value="600000"<%- stream.interval == 600000 ? 'selected="selected"':''%>><%= t('streams.labels.every10Minutes')  %></option>
+            <option value="3600000"<%- stream.interval == 3600000 ? 'selected="selected"':''%>><%= t('streams.labels.everyHour')  %></option>
+            <option value="86400000"<%- stream.interval == 86400000 ? 'selected="selected"':''%>><%= t('streams.labels.everyDay')  %></option>
+        </select>
+    </div>
+</div>
+
+<div class="form-actions">
+    <button type="submit" class="btn btn-primary"><%= t('streams.actions.save') %></button>
+    <a href="<%- pathTo.streams() %>" class="btn"><%= t('common.cancel') %></a>
+</div>

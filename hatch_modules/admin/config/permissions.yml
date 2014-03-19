@@ -1,0 +1,36 @@
+permissions:
+  name: admin
+  title: Administration
+  permissions:
+    -
+      name: admin.editConsole
+      title: Edit console
+      permissions:
+        -
+          name: admin.editConsole.widgets
+          title: Widgets
+        -
+          name: admin.editConsole.layouts
+          title: Layouts
+        -
+          name: admin.editConsole.design
+          title: Design
+    -
+      name: admin.management
+      title: Management area
+      permissions:
+        - 
+          name: admin.management.community
+          title: Community
+        -
+          name: admin.management.content
+          title: Content
+        -
+          name: admin.management.pages
+          title: Pages
+        -
+          name: admin.management.group
+          title: Settings
+        -
+          name: admin.management.modules
+          title: Modules

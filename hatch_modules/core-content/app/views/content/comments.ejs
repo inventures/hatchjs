@@ -1,0 +1,11 @@
+<% comments.forEach(function (comment) { %>
+    <div class="media">
+        <img src="<%- getUrl(comment.author.avatar, '32x32') %>" width="32" class="pull-left">
+        <div class="media-body">
+            <a href="<%- specialPagePath('profile', { username: comment.author.username }) %>"><%- comment.author.displayName %></a>
+            <p>
+                <%- comment.text %>
+            </p>
+        </div>
+    </div>
+<% }) %>

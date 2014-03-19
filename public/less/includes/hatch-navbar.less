@@ -1,0 +1,53 @@
+body.navbar-fixed
+{
+    padding-top : @navbar-height;
+}
+
+.navbar-fixed-top
+{
+    z-index : 2;
+}
+
+ul.breadcrumb
+{
+    //margin-right : -2px;
+    border-radius : 0 0 3px 3px;
+    border-top : 0;
+    padding-top : 8px;
+    width : auto;
+    padding-left : 0;
+    padding-right : 0;
+    margin-bottom : 10px;
+    
+    li:first-child
+    {
+        margin-left : 13px;
+    }
+
+    li.active
+    {
+        font-weight: bold;
+    }
+
+    > li
+    {
+        display : inline;
+    }
+}
+
+.subnav
+{
+    margin-bottom: 10px;
+    width : auto;
+}
+
+.subnav-fixed
+{
+    z-index : 1;
+}
+
+.subnav.withBreadcrumb
+{
+    border-radius : 3px 3px 0 0; 
+    margin-bottom: 0px;
+}

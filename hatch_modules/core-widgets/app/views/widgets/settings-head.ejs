@@ -1,0 +1,114 @@
+<%- form.begin() %>
+  <div class="modal wide" id="modal-settings">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal">×</a>
+      <h3><%- t('widget.settings.title') %></h3>
+    </div>
+    <div class="modal-body">
+
+      <div class="row main-widget-settings">
+        <div class="span3 widget-title">
+          <div class="control-group">
+            <%- form.label('title', {class: 'control-label'}) %>
+            <div class="controls">
+              <%- form.input('title', {class: 'xx-small'}) %>
+            </div>
+          </div>
+        </div>
+        <div class="span2 widget-visibility">
+          <div class="control-group">
+              <%- form.label('visibility', icon('eye-open'), {class: 'control-label'}) %>
+            <div class="controls">
+
+              <% var visibility = 
+                [
+                  { icon: 'mobile-phone', class: 'success', name: 'All devices', value: 'visible-all', description: 'This widget can be viewed on all devices'},
+                  { icon: 'tablet', class: 'warning', name: 'Tablets', value: 'hidden-phone', description: 'This widget can be viewed on tablets and computers'},
+                  { icon: 'desktop', class: 'danger', name: 'Computers', value: 'visible-desktop', description: 'This widget can only be viewed on computers'}
+                ]; 
+
+                var visibilityValue = _.find(visibility, function(v) { return v.value == (widget.settings.visibility || 'visible-all') });
+              %>
+
+              <input type="hidden" id="visibility" name="visibility" value="<%- visibilityValue.value %>" />
+
+              <div class="btn-group" id="widget-visibility">
+                <button class="btn btn-<%- visibilityValue.class %>" data-toggle="dropdown" tabindex="-1"><%- visibilityValue.name %></button>
+                <button class="btn dropdown-toggle btn-<%- visibilityValue.class %>" data-toggle="dropdown" tabindex="-1">
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu pull-right">
+                  <% visibility.forEach(function (v) { %>
+                    <li>
+                      <a href="#<%- v.value %>" data-value="<%- escape(JSON.stringify(v)) %>" rel="widget-visibility">
+                        <i class="icon-<%- v.icon %>"></i>
+                        <%- v.name %>
+                        <br/>
+                        <small><%- v.description %></small>
+                      </a>
+                    </li>
+                  <% }); %>
+                </ul>
+              </div>
+
+              <!--
+              <select class="" name="visibility" id="widget-visibility">
+                <% 'visible-all:All,visible-desktop:Desktop,hidden-phone:Tablet'.split(',').forEach(function (v) { %>
+                <option value="<%- v.split(':')[0] %>" <%- widget.settings.visibility === v.split(':')[0] ? 'selected' : '' %>><%- v.split(':')[1] %></option>
+                <% }); %>
+              </select>
+              -->
+
+            </div>
+          </div>
+        </div>
+        <div class="span2 widget-privacy">
+          <div class="control-group">
+            <label class="control-label" for="privacy"><i class="icon-lock"></i></label>
+            <div class="controls">
+
+              <% var privacy = 
+                [
+                  { icon: 'globe', class: 'success', name: 'Public', value: 'public', description: 'All users can see this widget'},
+                  { icon: 'user', class: 'warning', name: 'Members', value: 'members-only', description: 'Only members of this group can see this widget'},
+                  { icon: 'unlock', class: 'danger', name: 'Private', value: 'private', description: 'Only the group owner and editors can see this widget'},
+                  { icon: 'lock', class: '', name: 'Signed out', value: 'non-registered', description: 'Only signed out users will see this widget'}
+                ];
+
+                var privacyValue = _.find(privacy, function(p) { return p.value == (widget.settings.privacy || 'public') });
+              %>
+
+              <input type="hidden" id="privacy" name="privacy" value="<%- privacyValue.value %>" />
+
+              <div class="btn-group" id="widget-privacy">
+                <button class="btn btn-<%- privacyValue.class %>" data-toggle="dropdown" tabindex="-1"><%- privacyValue.name %></button>
+                <button class="btn dropdown-toggle btn-<%- privacyValue.class %>" data-toggle="dropdown" tabindex="-1">
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu pull-right">
+                  <% privacy.forEach(function (p) { %>
+                    <li>
+                      <a href="#<%- p.value %>" data-value="<%- escape(JSON.stringify(p)) %>" rel="widget-privacy">
+                        <i class="icon-<%- p.icon %>"></i>
+                        <%- p.name %>
+                        <br/>
+                        <small><%- p.description %></small>
+                      </a>
+                    </li>
+                  <% }); %>
+                </ul>
+              </div>
+
+              <!--
+              <select class="" name="privacy" id="privacy">
+                <% 'public:Public,members-only:Members,private:Private'.split(',').forEach(function (v) { %>
+                <option value="<%- v.split(':')[0] %>" <%- widget.settings.privacy === v.split(':')[0] ? 'selected' : '' %>><%- v.split(':')[1] %></option>
+                <% }); %>
+              </select>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title><%= pageTitle() %></title>
+
+    <%- metaTag('keywords', req.page.metaKeywords || req.group.metaKeywords) %>
+    <%- metaTag('description', req.page.metaDescription || req.group.metaDescription) %>
+
+    <% if ((req.headers['user-agent'] || '').indexOf('iPad') === -1) { %>
+        <%- metaTag('viewport', 'width=480, user-scalable=no') %>
+    <% } %>
+
+    <%- openGraphTags() %>
+    <%- csrfMetaTag() %>
+
+    <%- metaTag('userid', req.user && req.user.id) %>
+    <%- metaTag('pageId', req.page.id || req.page.url) %>
+    <%- metaTag('groupId', req.group.id) %>
+
+    <link type="text/css" rel="stylesheet" href="<%- getStylesheetPath() %>" id="main-stylesheet" />
+    <% if (isPrivileged()) { %>
+        <link rel="stylesheet" href="/javascripts/redactor/redactor.css" />
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <style id="preview-stylesheet" type="text/css"></style>
+    <% } %>
+
+    <script type="text/javascript">
+        canEdit = <%- isPrivileged() %>;
+    </script>
+
+    <link rel="icon" type="image/png" href="<%- group.favicon || '/egg.png' %>">
+
+    <%- javascriptIncludeTag(javascripts()) %>
+
+    <script type="text/javascript">
+        window.hatch = new Hatch({ admin: canEdit });
+        $(document).ready(function () {
+            window.hatch.init();
+        });
+    </script>
+</head>
+<body class="<%- req.group.navBarType === 'fixed' ? 'navbar-fixed' : '' %>">
+    <div id="blank-modal" class="modal fade"></div>
+
+    <div id="pjax-body">
+        <% if (req.query._pjax) { %>
+            <title><%= pageTitle() %></title>
+            <%- metaTag('pageId', req.page.id || req.page.url) %>
+        <% } %>
+
+        <nav class="navbar navbar-default navbar-top <%- req.group.navBarType && req.group.navBarType !== 'default' ? 'navbar-fixed-top':'navbar-static-top' %> navbar-type-<%- req.group.navBarType %> navbar-<%- req.group.navBarStyle %>" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <%- linkTo(req.group.name,
+                    '//' + req.group.homepage.url, { class: 'navbar-brand' })  %>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <% if (req.user && !request.member && !req.pending && req.group.joinPermissions != 'closed') { %>
+                        <ul class="nav navbar-nav">
+                            <li><%- linkTo(icon('star') + ' ' + t('layout.joinGroup'),
+                                pathFor('user').join()) %>
+                            </li>
+                        </ul>
+                    <% } %>
+
+                    <% if (isPrivileged()) { %>
+                        <ul class="nav navbar-nav visible-desktop">
+                            <li><%- linkTo(icon('cog') + ' ' + t('layout.manageGroup'),
+                                pathFor('admin').index,
+                                {id: 'manage-group-link'}) %>
+                            </li>
+                            <li><%- linkTo(
+                                '<i class="fa fa-eye-slash" style="display: none;"></i>' +
+                                '<i class="fa fa-eye"></i>' + ' ' + t('layout.toggleEditConsole'),
+                                '#edit', {
+                                id: 'edit-page-link',
+                                accesskey: 'e'
+                                }) %>
+                            </li>
+                        </ul>
+                    <% } %>
+                    <% if (request.user) { var user = request.user; %>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="/">
+                                    <%= user.displayName || user.username || user.email %>
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><%- linkTo(icon('user') + ' ' + t('layout.viewProfile'),
+                                        specialPagePath('profile', { username: req.user.username })) %></li>
+                                    <li><%- linkTo(icon('cogs') + ' ' + t('layout.editProfile'),
+                                        specialPagePath('account')) %>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li> <%- linkTo(icon('power-off') + ' ' + t('layout.signOut'), pathFor('user').logout) %> </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    <% } else { %>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><%- linkTo(t('layout.signIn'), '#login',
+                                {'data-toggle': "modal"}) %></li>
+                            <% if(req.group.joinPermissions !== 'closed') { %>
+                            <li><%- linkTo(t('layout.joinGroup'), '#register',
+                                {'data-toggle': "modal"}) %></li>
+                            <% } else { %>
+                            <li><%- linkTo(t('layout.register'), '#register',
+                                {'data-toggle': "modal"}) %></li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </div>
+            </div>
+        </nav>
+
+        <% if (req.pending) { %>
+            <div class="container alert-container">
+                <div class="alert alert-block alert-success">
+                    <% if (req.pending.requested) { %>
+                    <p>
+                        <strong><%- t('layout.groupAccessRequestedTitle') %></strong>
+                        <br/>
+                        <%- icon('time') + t('layout.groupAccessRequestedDescription') %>
+                    </p>
+                    <% } else { %>
+                    <p>
+
+                        <%- icon('info-sign') + t('layout.invitedToGroup') %>
+                    </p>
+                    <p class="lead">
+                        <%- linkTo(icon('ok') + t('layout.acceptInvitation'),
+                            pathFor('user').join(), {class: 'text-success'}) %>
+                        /
+                        <%- linkTo(t('layout.ignoreInvitation'),
+                            pathFor('user').rejectInvitation(), {class: 'text-success'}) %>
+                    </p>
+                    <% } %>
+                </div>
+            </div>
+        <% } else if (req.user && req.user.type === 'temporary' && req.url.indexOf(specialPagePath('register')) == -1) { %>
+            <div class="container alert-container">
+                <div class="alert alert-block alert-information">
+                    <p>
+                        <strong><%- t('layout.registration.inProgress') %></strong>
+                        <br/>
+                        <%- t([
+                            'layout.registration.suggestProceed',
+                            linkTo(
+                                t('layout.registration.go'),
+                                specialPagePath('register') + '?redirect=' + pathFor('user').join()
+                            )
+                        ]) %>
+                    </p>
+                </div>
+            </div>
+        <% } %>
+
+        <div id="main">
+            <div id="row-content">
+                <%- body %>
+            </div>
+
+            <div class="container footer-container">
+                <footer>
+                    <div class="pull-right">
+                        <i class="icon-bolt"></i>
+                        <span id="pagetimer">
+                            <%- t(['layout.renderSpeed', ((Date.now() - startedAt) / 1000).toFixed(3)]) %>
+                        </span>
+                    </div>
+
+                    <%- req.group.footerHtml || t('common.bragHatch') %>
+                </footer>
+            </div>
+        </div>
+        <!-- END PJAX-BODY -->
+    </div>
+
+    <% if (!request.user) { %>
+        <% include _register %>
+        <% include _reset-password %>
+        <% include _login %>
+    <% } else if (user.canEdit) { %>
+        <% include _webfonts %>
+        <div id="editConsoleHolder"></div>
+    <% }%>
+
+    <% if (req.group.googleAnalyticsId) { %>
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '<%- req.group.googleAnalyticsId %>']);
+            _gaq.push(['_setDomainName', '<%- req.headers.host %>']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    <% } %>
+</body>
+</html>

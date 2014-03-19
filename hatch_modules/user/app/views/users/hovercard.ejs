@@ -1,0 +1,35 @@
+<table class="member-list">
+    <tbody>
+        <tr>
+            <td width="48">
+                <img src="<%= user.avatar || 'http://placehold.it/48x48' %>" class="img img-rounded"/>
+            </td>
+            <td>
+                <a href="<%- specialPagePath('profile', { username: user.username }) %>"><%- user.displayName %></a>
+                <br/>
+                <%- user.oneLiner %>
+            </td>
+            <td>
+                <% if(req.user && req.user.id != user.id) { %>
+                    <% if(user.isFollowed) { %>
+                        <%- linkToRemote('<i class="icon-remove"></i>', pathTo.unfollow(user.id), { class: 'btn btn-primary pull-right', 'data-target-id': 'nothing', rel: 'follow' }) %>
+                    <% } else { %>
+                        <%- linkToRemote('<i class="icon-star"></i>', pathTo.follow(user.id), { class: 'btn btn-primary pull-right', 'data-target-id': 'nothing', rel: 'follow' }) %>
+                    <% } %>
+                <% } %>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $('.hovercard a[rel=follow]').bind("ajax:success", function(e, data) {
+        $.noty({
+            type: data.status,
+            text: '<i class="icon-' + (data.icon || 'ok') + '"></i> ' + data.message
+        });
+
+        //reload the hovercard
+        $('#hovercard .content').load('<%- pathTo.hovercard(user.id) %>');
+    });
+</script>

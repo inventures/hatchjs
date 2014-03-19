@@ -1,0 +1,30 @@
+<%- widgetTitle() %>
+
+<p>
+  <%- __('Welcome to %s', req.group.name) %>
+</p>
+
+<p class="lead">
+  <a href="#register" data-toggle="modal"><%- __('Sign up') %></a> <%- __('or') %> <a href="#login" data-toggle="modal"><%- __('Sign in') %></a>
+</p>
+
+<hr/>
+
+<p>
+  <%- __('Or sign in with:') %>
+
+  <span class="oauth-providers">
+    <% if (moduleEnabled('facebook')) { %>
+        <a href="<%- pathFor('facebook').auth %>"><i class="icon-facebook-sign"></i></a>
+    <% } %>
+    <% if (moduleEnabled('linkedin')) { %>
+        <a href="<%- pathFor('linkedin').auth %>"><i class="icon-linkedin-sign"></i></a>
+    <% } %>
+    <% if (moduleEnabled('twitter')) { %>
+        <a href="<%- pathFor('twitter').auth %>"><i class="icon-twitter-sign"></i></a>
+    <% } %>
+    <% if (moduleEnabled('google-oauth')) { %>
+        <a href="<%- pathFor('google-oauth').auth %>"><i class="icon-google-plus"></i></a>
+    <% } %>
+  </span>
+</p>

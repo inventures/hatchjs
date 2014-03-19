@@ -1,0 +1,65 @@
+<div class="page-title">
+    <h3><%- t('streams.headers.manage') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2" width="">
+                                <%- t('streams.headers.stream') %>
+                            </th>
+                            <th width="200">
+                                <%- t('streams.headers.tags') %>
+                            </th>
+                            <th width="150">
+                                <%- t('streams.headers.lastRun') %>
+                            </th>
+                            <th width="105">
+                                <%- t('streams.headers.actions') %>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if(streams.length === 0) { %>
+                            <tr>
+                                <td colspan="6">
+                                    <%- t('streams.help.noStreams') %>
+                                </td>
+                            </tr>
+                        <% } %>
+                        <% streams.forEach(function(stream) { %>
+                            <tr>
+                                <td width="2%">
+                                    <i class="icon-<%- importers[stream.type].icon %>"></i>
+                                </td>
+                                <td>
+                                    <%- stream.title %>
+                                </td>
+                                <td>
+                                    <% stream.tags.forEach(function(tag) { %>
+                                        <a href="<%- pathTo.filteredContent(tag.id) %>"><span class="label label-info"><%- tag.title %></span></a>
+                                    <% }) %>
+                                </td>
+                                <td>
+                                    <%- stream.lastRun ? timeSince(stream.lastRun) : t('common.never') %>
+                                </td>
+                                <td>
+                                    <%- linkTo('<i class="icon-' + (stream.enabled ? 'pause':'play') + '"></i>', pathTo.toggleStream(stream.id), {remote: true}) %>
+                                    &nbsp;
+                                    <%- linkTo(t('streams.actions.edit'), pathTo.editStream(stream.id)) %>
+                                    &nbsp;
+                                    <%- linkTo('<i class="icon-remove"></i>', pathTo.stream(stream.id), { method: 'delete', remote: true, "data-confirm": t('streams.help.deleteConfirm') }) %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

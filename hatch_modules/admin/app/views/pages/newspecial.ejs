@@ -1,0 +1,49 @@
+<div class="page-title">
+    <h3><%- t('pages.headers.newSpecial') %></h3>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="grid simple">
+            <div class="grid-body">
+                <%- errorMessagesFor(page) %>
+
+                <%- formTagBegin({action: pathTo.pages(), remote: true, method: 'POST', id: 'page_form', class: 'form-vertical form-slim'}) %>
+                    <input type="hidden" name="parentId" value="<%- req.pagesTree[0].id %>" />
+
+                    <% if (!page.id) { %>
+                    <div class="form-group">
+                        <label for="type" class="form-label"><%- t('pages.labels.specialPageType') %></label>
+                        <div class="controls">
+                            <select id="type" name="type" class="form-control">
+                                <% specials.forEach(function (sp) { %>
+                                    <option <%- sp.type == type ? 'selected="selected"':'' %>> <%- sp.type %> </option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                    <% } %>
+
+                    <div class="form-group">
+                        <label for="page_title" class="form-label"><%- t('pages.labels.title') %></label>
+                        <div class="controls">
+                            <input type="text" name="title" id="page_title" class="form-control" value="<%- page.title || '' %>" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="page_url" class="form-label"><%- t('pages.labels.url') %></label>
+                        <div class="controls">
+                            <input type="text" name="url" id="page_url" class="form-control" value="<%- page.url %>" />
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary"><i class="icon-ok icon-white"></i> <%- t('pages.actions.create') %></button>
+                        <%- linkTo(t('pages.actions.cancel'), pathTo.pages(), {class: 'btn'}) %>
+                    </div>
+                <%- formTagEnd() %>
+            </div>
+        </div>
+    </div>
+</div>

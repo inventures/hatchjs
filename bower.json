@@ -1,0 +1,24 @@
+{
+  "name": "hatchjs",
+  "version": "1.0.8",
+  "homepage": "https://github.com/inventures/hatchjs",
+  "authors": [
+    "Marcus Greenwood <marcus@inventur.es>"
+  ],
+  "description": "client side components",
+  "main": "server.js",
+  "license": "AGPL",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.3",
+    "bootswatch": "~3.0.3",
+    "font-awesome": "~4.0.3"
+  }
+}

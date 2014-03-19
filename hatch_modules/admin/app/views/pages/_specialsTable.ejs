@@ -1,0 +1,22 @@
+<% pages.forEach(function (page) { %>
+    <tr class="page-item level<%- page.level || 0 %>" data-id="<%- page.id %>"
+    data-path="<%- page.url %>">
+        <td>
+            <i class="<%- page.icon || 'icon-star' %>"></i>
+            <%= page.title %> (<%- page.type %>)
+        <td>
+            <%- linkTo('/' + page.url.replace(req.group.homepage.url, ''), '//' + page.url) %>
+        </td>
+        <td>
+            <%- t('common.public') %>
+        </td>
+        <td>
+            <%- t('common.visible') %>
+        </td>
+        <td>
+            <%- linkTo(t('pages.actions.edit'), pathTo.editPage(page), {class: '' }) %>
+            &nbsp;
+            <%- linkTo('<i class="icon-remove"></i>', pathTo.deletePage(page.id), {remote: true, rel: 'tooltip', method: 'delete', 'data-original-title': t('pages.help.delete'), rel: 'delete-page'}) %>
+        </td>
+    </tr>
+<% }); %>

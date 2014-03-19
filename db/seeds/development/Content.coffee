@@ -1,0 +1,224 @@
+Content.seed ->
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    groupId: null
+    replyToId: null
+    tags: ["popular"]
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: 'two'
+    fulltext: '  ["popular"]'
+    importData: null
+    id: 325
+
+Content.seed ->
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    groupId: 1
+    replyToId: null
+    tags: ["popular"]
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: 'three'
+    fulltext: '  ["popular"]'
+    importData: null
+    id: 324
+
+Content.seed ->
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    groupId: 1
+    replyToId: null
+    tags: ["popular"]
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: 'one'
+    fulltext: '  ["popular"]'
+    importData: null
+    id: 323
+
+Content.seed ->
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    groupId: null
+    replyToId: null
+    tags: ["news"]
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: 'url2'
+    fulltext: '  ["news"]'
+    importData: null
+    id: 322
+
+Content.seed ->
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    groupId: null
+    replyToId: null
+    tags: ["news"]
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: 'url1'
+    fulltext: '  ["news"]'
+    importData: null
+    id: 321
+
+Content.seed ->
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    groupId: null
+    replyToId: null
+    tags: null
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: 'host/path.html'
+    fulltext: '  null'
+    importData: null
+    id: 320
+
+Content.seed ->
+    type: null
+    imported: null
+    title: null
+    text: null
+    excerpt: null
+    previewImage: null
+    attachment: null
+    poll: null
+    location: null
+    comments: []
+    repliesTotal: null
+    likes: []
+    dislikes: []
+    likesTotal: 0
+    views: null
+    score: 0
+    groupId: null
+    replyToId: null
+    tags: null
+    tagString: null
+    authorId: null
+    privacy: null
+    createdAt: null
+    updatedAt: null
+    timestamp: 0
+    priority: null
+    url: null
+    fulltext: '  null'
+    importData: null
+    id: 319
+
