@@ -27,7 +27,7 @@ describe.skip('Media', function() {
         });
     });
 
-    it('should upload an image to S3', function (done) {
+    it.ignore('should upload an image to S3', function (done) {
         // set the s3 settings
         Media.s3 = {
             key: '[redacted]',
