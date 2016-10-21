@@ -1,3 +1,5 @@
+(Hatch.js is no longer officially supported. Please feel free to fork, chop and change, use as reference)
+
 # Hatch.js documentation
 
 Hatch.js is CMS platform with social features. This package is an
