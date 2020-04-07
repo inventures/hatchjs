@@ -38,12 +38,12 @@ $('#new-ticket-form').validate({
                     parent.removeClass('success-control').addClass('error-control');  
                 },
 
-                highlight: function (element) { // hightlight error inputs
+                highlight: function (element) { // highlight error inputs
                     var parent = $(element).parent();
                     parent.removeClass('success-control').addClass('error-control'); 
                 },
 
-                unhighlight: function (element) { // revert the change done by hightlight
+                unhighlight: function (element) { // revert the change done by highlight
                     
                 },
 
